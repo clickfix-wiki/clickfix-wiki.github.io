@@ -1,0 +1,24 @@
+Name: "Template Utility"
+Description: "A template description of what this utility does"
+Author: "Your Name"
+Created: "2024-01-01"
+Commands:
+  - Command: "template-command"
+    Description: "Description of what this command does"
+    Category: "Command Execution"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Any prerequisites needed"
+    Examples:
+      - Description: "Basic usage example"
+        Command: "template-command /parameter"
+        Output: "Expected output"
+    Mitigations:
+      - "Security consideration 1"
+      - "Security consideration 2"
+    References:
+      - "https://example.com/reference1"
+      - "https://example.com/reference2"
+    Tags:
+      - "template"
+      - "example" 

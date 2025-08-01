@@ -1,0 +1,151 @@
+Name: "powershell.exe"
+Description: "Windows PowerShell - Advanced command-line shell and scripting environment"
+Author: "ClickFix Wiki Team"
+Created: "2024-01-01"
+Commands:
+  - Command: "powershell.exe -Command \"command\""
+    Description: "Execute a PowerShell command"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Execute a simple PowerShell command"
+        Command: "powershell.exe -Command \"Get-Process\""
+        Output: "List of running processes"
+      - Description: "Execute with bypass execution policy"
+        Command: "powershell.exe -ExecutionPolicy Bypass -Command \"Get-Process\""
+        Output: "Command executed bypassing restrictions"
+    Mitigations:
+      - "Monitor PowerShell execution in logs"
+      - "Restrict PowerShell execution via AppLocker"
+      - "Enable PowerShell logging and transcription"
+      - "Use Windows Defender Application Control"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+      - "https://attack.mitre.org/techniques/T1059/001/"
+    Tags:
+      - "powershell"
+      - "scripting"
+      - "windows-native"
+
+  - Command: "powershell.exe -File \"script.ps1\""
+    Description: "Execute a PowerShell script file"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Execute a local script"
+        Command: "powershell.exe -File \"C:\\scripts\\test.ps1\""
+        Output: "Script execution output"
+      - Description: "Execute with bypass execution policy"
+        Command: "powershell.exe -ExecutionPolicy Bypass -File \"script.ps1\""
+        Output: "Script executed bypassing restrictions"
+    Mitigations:
+      - "Monitor script file execution"
+      - "Restrict script execution paths"
+      - "Enable script block logging"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+    Tags:
+      - "script-execution"
+      - "file-execution"
+
+  - Command: "powershell.exe -EncodedCommand \"base64\""
+    Description: "Execute base64 encoded PowerShell command"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Execute encoded command"
+        Command: "powershell.exe -EncodedCommand \"Z2V0LXByb2Nlc3M=\""
+        Output: "List of running processes"
+    Mitigations:
+      - "Monitor encoded command execution"
+      - "Block encoded command execution"
+      - "Log PowerShell command content"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+    Tags:
+      - "encoded-execution"
+      - "obfuscation"
+
+  - Command: "powershell.exe -WindowStyle Hidden"
+    Description: "Execute PowerShell with hidden window"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Execute with hidden window"
+        Command: "powershell.exe -WindowStyle Hidden -Command \"Get-Process\""
+        Output: "Command executed invisibly"
+    Mitigations:
+      - "Monitor hidden window creation"
+      - "Block hidden window execution"
+      - "Enable process monitoring"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+    Tags:
+      - "hidden-execution"
+      - "stealth"
+
+  - Command: "powershell.exe -NoProfile"
+    Description: "Execute PowerShell without loading profile"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Execute without profile"
+        Command: "powershell.exe -NoProfile -Command \"Get-Process\""
+        Output: "Command executed in clean environment"
+    Mitigations:
+      - "Monitor profile bypass attempts"
+      - "Audit PowerShell execution context"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+    Tags:
+      - "clean-execution"
+      - "profile-bypass"
+
+  - Command: "powershell.exe -NonInteractive"
+    Description: "Execute PowerShell in non-interactive mode"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Execute non-interactively"
+        Command: "powershell.exe -NonInteractive -Command \"Get-Process\""
+        Output: "Command executed without user interaction"
+    Mitigations:
+      - "Monitor non-interactive execution"
+      - "Log PowerShell execution mode"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+    Tags:
+      - "non-interactive"
+      - "automated-execution"
+
+  - Command: "powershell.exe -ExecutionPolicy Bypass"
+    Description: "Bypass execution policy restrictions"
+    Category: "PowerShell"
+    Platform: ["Windows"]
+    Interface: ["CLI"]
+    Prerequisites: "Windows operating system with PowerShell"
+    Examples:
+      - Description: "Bypass execution policy"
+        Command: "powershell.exe -ExecutionPolicy Bypass -Command \"Get-Process\""
+        Output: "Command executed bypassing restrictions"
+    Mitigations:
+      - "Monitor execution policy bypass attempts"
+      - "Enforce execution policy via Group Policy"
+      - "Log execution policy changes"
+    References:
+      - "https://docs.microsoft.com/en-us/powershell/scripting/overview"
+    Tags:
+      - "execution-policy-bypass"
+      - "security-bypass" 

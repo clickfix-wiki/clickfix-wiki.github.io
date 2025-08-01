@@ -1,0 +1,86 @@
+title: ClickFix Wiki
+description: A comprehensive catalog of Windows system utilities, commands, and techniques for security research and system administration
+url: "https://clickfix-wiki.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections
+collections:
+  yml:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "yml"
+    values:
+      layout: "yml"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Include
+include:
+  - _pages
+  - _layouts
+  - _includes
+  - _sass
+  - assets
+
+# Theme settings
+theme: jekyll-theme-cayman
+
+# Social media
+github:
+  is_project_page: true
+  repository_url: https://github.com/clickfix-wiki/clickfix-wiki.github.io
+  zip_url: https://github.com/clickfix-wiki/clickfix-wiki.github.io/archive/master.zip
+  tar_url: https://github.com/clickfix-wiki/clickfix-wiki.github.io/archive/master.tar.gz
+
+# Site settings
+author:
+  name: ClickFix Wiki Team
+  email: team@clickfix-wiki.github.io
+
+# Navigation
+nav:
+  - title: Home
+    url: /
+  - title: Binaries
+    url: /binaries/
+  - title: Scripts
+    url: /scripts/
+  - title: Libraries
+    url: /libraries/
+  - title: API
+    url: /api/
+  - title: About
+    url: /about/
+
+# Footer
+footer:
+  links:
+    - title: GitHub
+      url: https://github.com/clickfix-wiki/clickfix-wiki.github.io
+    - title: Issues
+      url: https://github.com/clickfix-wiki/clickfix-wiki.github.io/issues
+    - title: Contributing
+      url: https://github.com/clickfix-wiki/clickfix-wiki.github.io/blob/master/CONTRIBUTING.md 

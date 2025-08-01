@@ -1,0 +1,104 @@
+type: object
+required:
+  - Name
+  - Description
+  - Author
+  - Created
+  - Commands
+properties:
+  Name:
+    type: string
+    description: "The name of the utility or command"
+  Description:
+    type: string
+    description: "A brief description of what this utility does"
+  Author:
+    type: string
+    description: "The author of this entry"
+  Created:
+    type: string
+    format: date
+    description: "The date this entry was created (YYYY-MM-DD)"
+  Commands:
+    type: array
+    items:
+      type: object
+      required:
+        - Command
+        - Description
+        - Category
+      properties:
+        Command:
+          type: string
+          description: "The actual command or technique"
+        Description:
+          type: string
+          description: "Description of what this command does"
+        Category:
+          type: string
+          enum:
+            - "Open File Explorer"
+            - "Run Command"
+            - "Clear Mark of The Web"
+            - "UAC"
+            - "Command Execution"
+            - "File Operations"
+            - "System Information"
+            - "Network Operations"
+            - "Registry Operations"
+            - "Service Management"
+            - "Process Management"
+            - "User Management"
+            - "Security Operations"
+            - "PowerShell"
+            - "Batch Scripting"
+            - "VBScript"
+            - "JavaScript"
+            - "Other"
+        Platform:
+          type: array
+          items:
+            type: string
+            enum:
+              - "Windows"
+              - "Mac"
+              - "Linux"
+        Interface:
+          type: array
+          items:
+            type: string
+            enum:
+              - "GUI"
+              - "CLI"
+        Prerequisites:
+          type: string
+          description: "Any prerequisites needed to run this command"
+        Examples:
+          type: array
+          items:
+            type: object
+            properties:
+              Description:
+                type: string
+                description: "Description of the example"
+              Command:
+                type: string
+                description: "The example command"
+              Output:
+                type: string
+                description: "Expected output (optional)"
+        Mitigations:
+          type: array
+          items:
+            type: string
+          description: "List of mitigations or security considerations"
+        References:
+          type: array
+          items:
+            type: string
+          description: "List of reference links"
+        Tags:
+          type: array
+          items:
+            type: string
+          description: "Additional tags for categorization" 
