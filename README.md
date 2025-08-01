@@ -17,7 +17,7 @@ ClickFix refers to social engineering techniques where scammers trick victims in
 ## Structure
 
 ```
-xclickfix-wiki.github.io/
+clickfix-wiki.github.io/
 ├── .github/workflows/deploy.yml # GitHub Actions for deployment
 ├── index.html                   # Main website with simplified cards
 ├── techniques/                  # YAML files for each technique
