@@ -147,24 +147,24 @@ function getFallbackTechniques() {
     return [
         {
             id: 'cmd',
-            title: 'Command Prompt (cmd.exe)',
-            description: 'Windows command-line interpreter for executing commands and batch files.',
-            category: 'command-line',
-            tags: ['Windows', 'CLI', 'Command Line', 'System Tools']
+            Name: 'Command Prompt (cmd.exe)',
+            Description: 'Windows command-line interpreter for executing commands and batch files.',
+            Category: 'command-line',
+            Tags: ['Windows', 'CLI', 'Command Line', 'System Tools']
         },
         {
             id: 'powershell',
-            title: 'PowerShell (powershell.exe)',
-            description: 'Advanced command-line shell and scripting language for Windows.',
-            category: 'command-line',
-            tags: ['Windows', 'CLI', 'Scripting', 'System Administration']
+            Name: 'PowerShell (powershell.exe)',
+            Description: 'Advanced command-line shell and scripting language for Windows.',
+            Category: 'command-line',
+            Tags: ['Windows', 'CLI', 'Scripting', 'System Administration']
         },
         {
             id: 'regedit',
-            title: 'Registry Editor (regedit.exe)',
-            description: 'Windows registry editor for viewing and modifying system registry.',
-            category: 'system-tools',
-            tags: ['Windows', 'GUI', 'Registry', 'System Configuration']
+            Name: 'Registry Editor (regedit.exe)',
+            Description: 'Windows registry editor for viewing and modifying system registry.',
+            Category: 'system-tools',
+            Tags: ['Windows', 'GUI', 'Registry', 'System Configuration']
         }
     ];
 }
@@ -267,14 +267,14 @@ function renderTechniques(techniquesToRender) {
     } else {
         noResults.style.display = 'none';
         grid.innerHTML = techniquesToRender.map(technique => {
-            const tags = technique.tags ? technique.tags.map(tag => {
+            const tags = technique.Tags ? technique.Tags.map(tag => {
                 const tagType = getTagType(tag);
                 return `<span class="technique-tag" data-${tagType}="${tag}">${tag}</span>`;
             }).join('') : '';
             
             return `
                 <a href="pages/${technique.id}.html" class="technique-item" data-id="${technique.id}">
-                    <div class="technique-title">${technique.title}</div>
+                    <div class="technique-title">${technique.Name || 'Unknown Technique'}</div>
                     <div class="technique-meta">
                         ${tags}
                     </div>
@@ -294,9 +294,9 @@ function filterTechniques(searchTerm) {
     if (searchTerm) {
         const searchLower = searchTerm.toLowerCase();
         filtered = filtered.filter(technique => (
-            technique.title.toLowerCase().includes(searchLower) ||
-            technique.description.toLowerCase().includes(searchLower) ||
-            (technique.iocfs && technique.iocfs.some(iocf => iocf.toLowerCase().includes(searchLower)))
+            (technique.Name && technique.Name.toLowerCase().includes(searchLower)) ||
+            (technique.Description && technique.Description.toLowerCase().includes(searchLower)) ||
+            (technique.Tags && technique.Tags.some(tag => tag.toLowerCase().includes(searchLower)))
         ));
     }
 
@@ -309,9 +309,9 @@ function filterTechniques(searchTerm) {
 
     if (allSelectedTags.length > 0) {
         filtered = filtered.filter(technique => {
-            if (!technique.tags) return false;
+            if (!technique.Tags) return false;
             return allSelectedTags.every(selectedTag => 
-                technique.tags.includes(selectedTag)
+                technique.Tags.includes(selectedTag)
             );
         });
     }
