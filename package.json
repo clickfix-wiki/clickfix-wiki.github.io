@@ -1,0 +1,28 @@
+{
+  "name": "clickfix-techniques",
+  "version": "1.0.0",
+  "description": "A comprehensive database of social engineering pretenses and Indicators of ClickFix (IoCF)",
+  "main": "index.html",
+  "scripts": {
+    "prestart": "node generate-pages.js",
+    "start": "python3 -m http.server 8000",
+    "add-technique": "node add-technique.js",
+    "generate-pages": "node generate-pages.js",
+    "clean": "node clean.js",
+    "build": "node generate-pages.js"
+  },
+  "keywords": [
+    "security",
+    "social-engineering",
+    "clickfix",
+    "iocf",
+    "awareness"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/cfbins2.git"
+  },
+  "homepage": "https://yourusername.github.io/cfbins2"
+} 

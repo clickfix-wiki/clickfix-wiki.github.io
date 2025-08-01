@@ -1,0 +1,35 @@
+id: fake-system-alert
+title: Fake System Alert Popup
+description: Scammers create fake system alerts that appear to be from the operating system to trick users into taking action.
+severity: medium
+category: web-scam
+tags:
+  - Windows
+  - Mac
+  - Linux
+  - GUI
+  - Web Browser
+  - Popup
+  - Fake Alert
+  - System Notification
+iocfs:
+  - Unexpected system alerts from unknown sources
+  - Popups claiming to be from Windows/Mac/Linux
+  - Alerts about "system errors" or "security issues"
+  - Demands for immediate action to "fix" problems
+  - Poor grammar or spelling in system messages
+  - Requests to call phone numbers or visit websites
+  - Claims about "critical system failures"
+  - Alerts that appear while browsing websites
+examples:
+  - "Windows Security Alert: Your computer is at risk"
+  - "System Error: Critical files corrupted"
+  - "Mac Security Warning: Multiple threats detected"
+  - "Linux System Alert: Immediate action required"
+prevention:
+  - Never click on unexpected system alerts
+  - Close popups using Alt+F4 or Ctrl+W
+  - Verify system messages through legitimate system tools
+  - Don't call phone numbers from popup alerts
+  - Use task manager to close suspicious processes
+  - Keep antivirus software updated 

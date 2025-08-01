@@ -1,0 +1,34 @@
+id: fake-antivirus-scan
+title: Fake Antivirus Scan Results
+description: Scammers create fake antivirus interfaces showing false threats to trick users into paying for "removal".
+severity: medium
+category: web-scam
+tags:
+  - Windows
+  - Mac
+  - Linux
+  - GUI
+  - Web Browser
+  - Popup
+  - Payment
+  - Fake Alert
+iocfs:
+  - Unexpected antivirus scan results
+  - Popups claiming to find "threats"
+  - Requests for payment to remove "viruses"
+  - Fake security alerts
+  - Suspicious download sources
+  - Claims about "multiple infections detected"
+  - Demands for immediate action
+  - Fake progress bars showing "scanning"
+examples:
+  - "15 viruses detected on your computer"
+  - "System scan complete - threats found"
+  - "Your computer is at risk"
+  - "Immediate action required to remove threats"
+prevention:
+  - Never pay for antivirus software through popups
+  - Use legitimate antivirus software from trusted sources
+  - Don't click on unsolicited security alerts
+  - Research security software before purchasing
+  - Be suspicious of free "system scans" 
