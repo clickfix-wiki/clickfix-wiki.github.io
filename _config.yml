@@ -10,7 +10,7 @@ permalink: pretty
 
 # Collections
 collections:
-  yml:
+  entries:
     output: true
     permalink: /:collection/:name/
 
@@ -18,9 +18,9 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: "yml"
+      type: "entries"
     values:
-      layout: "yml"
+      layout: "entry"
 
 # Plugins
 plugins:

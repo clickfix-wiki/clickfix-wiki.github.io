@@ -1,24 +1,28 @@
-Name: "Template Utility"
-Description: "A template description of what this utility does"
+---
+layout: entry
+title: "entry-name"
+---
+
+Name: "Entry Name"
+Description: "Brief description of the entry"
 Author: "Your Name"
-Created: "2024-01-01"
+Created: "YYYY-MM-DD"
 Commands:
-  - Command: "template-command"
-    Description: "Description of what this command does"
-    Category: "Command Execution"
-    Platform: ["Windows"]
-    Interface: ["CLI"]
+  - Command: "command-to-execute"
+    Description: "What this command does"
+    Category: "Category Name"
+    Platform: ["Windows", "Mac", "Linux"]
+    Interface: ["CLI", "GUI"]
     Prerequisites: "Any prerequisites needed"
     Examples:
-      - Description: "Basic usage example"
-        Command: "template-command /parameter"
+      - Description: "Example description"
+        Command: "example command"
         Output: "Expected output"
     Mitigations:
-      - "Security consideration 1"
-      - "Security consideration 2"
+      - "Mitigation strategy 1"
+      - "Mitigation strategy 2"
     References:
-      - "https://example.com/reference1"
-      - "https://example.com/reference2"
+      - "https://reference-url.com"
     Tags:
-      - "template"
-      - "example" 
+      - "tag1"
+      - "tag2" 

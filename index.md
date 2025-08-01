@@ -12,6 +12,25 @@ A comprehensive catalog of Windows system utilities, commands, and techniques fo
 
 ClickFix Wiki is a living documentation of Windows system utilities, commands, and techniques that can be used for various system operations, security research, and administrative tasks. This project serves as a reference for security researchers, system administrators, and IT professionals.
 
+## Entries
+
+{% assign entries = site.entries | sort: 'Name' %}
+{% for entry in entries %}
+<div class="entry-card">
+  <h3><a href="{{ entry.url }}">{{ entry.Name }}</a></h3>
+  <p>{{ entry.Description }}</p>
+  <div class="entry-meta">
+    <span class="author">By {{ entry.Author }}</span>
+    <span class="date">{{ entry.Created }}</span>
+  </div>
+  {% if entry.Commands %}
+  <div class="command-count">
+    {{ entry.Commands.size }} command{% if entry.Commands.size != 1 %}s{% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endfor %}
+
 ## Categories
 
 Our content is organized by the following categories:
@@ -30,18 +49,6 @@ Our content is organized by the following categories:
 - **Run Command** - Command execution utilities
 - **Clear Mark of The Web** - MOTW removal techniques
 - **UAC** - User Account Control bypass and manipulation
-
-## Featured Entries
-
-### Command Line Tools
-- [cmd.exe](/yml/cmd/) - Windows Command Prompt
-- [powershell.exe](/yml/powershell/) - Windows PowerShell
-
-## Pages
-
-### Command Execution Options
-- **Win+R** - Run dialog techniques
-- **Start Menu** - Start menu execution methods
 
 ## Contributing
 
