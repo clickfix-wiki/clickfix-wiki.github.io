@@ -1,17 +1,17 @@
-# ClickFix Techniques
-A comprehensive database of social engineering pretenses and Indicators of ClickFix (IoCF) to help identify and prevent social engineering attacks.
+# ClickFix Wiki
+A comprehensive documentation of Windows system tools and command-line utilities to help users understand and safely use system administration tools.
 
-## What is ClickFix?
+## What is ClickFix Wiki?
 
-ClickFix refers to social engineering techniques where scammers trick victims into pasting malicious scripts, commands, or files into their systems through various pretexts. This can lead to system compromise, data theft, and financial loss.
+ClickFix Wiki provides detailed documentation for Windows system tools and command-line utilities. This resource helps users understand how to properly use these tools for legitimate system administration tasks while being aware of their potential misuse in social engineering attacks.
 
 ## Features
 
-- **Searchable Database**: Find techniques by title, description, or IoCFs
-- **Tag-based Filtering**: Filter by OS, capabilities, and other categories
-- **Comprehensive IoCFs**: Each technique includes detailed indicators of compromise
-- **Severity Ratings**: Techniques are categorized by severity level
-- **Prevention Tips**: Each technique includes prevention strategies
+- **Tool Documentation**: Detailed guides for Windows system tools
+- **Step-by-Step Instructions**: Clear procedures for using each tool
+- **Prerequisites**: Requirements and permissions needed
+- **References**: Official Microsoft documentation links
+- **Category Organization**: Tools organized by function and type
 - **GitHub Pages Compatible**: Simple HTML/CSS/JS implementation
 
 ## Structure
@@ -20,12 +20,13 @@ ClickFix refers to social engineering techniques where scammers trick victims in
 clickfix-wiki.github.io/
 ├── .github/workflows/deploy.yml # GitHub Actions for deployment
 ├── index.html                   # Main website with simplified cards
-├── techniques/                  # YAML files for each technique
-│   ├── example.yaml             # all techniques as yaml files
+├── techniques/                  # YAML files for each tool
+│   ├── cmd.yaml                # Command Prompt documentation
+│   ├── powershell.yaml         # PowerShell documentation
+│   └── regedit.yaml            # Registry Editor documentation
 ├── technique-template.html      # Template for individual pages
-├── technique-template.yaml      # Template for new technique files
+├── technique-template.yaml      # Template for new tool files
 ├── generate-pages.js            # Script to generate individual pages
-├── add-technique.js             # Helper script for adding new techniques
 ├── clean.js                     # Script to clean generated files
 ├── yaml-quick-reference.md      # Quick reference for YAML format
 ├── package.json                 # Project metadata
@@ -33,51 +34,30 @@ clickfix-wiki.github.io/
 └── README.md                    # Project documentation
 ```
 
-**Note**: Individual technique pages (`pages/` directory) are generated automatically during the build process and are not committed to the repository.
+**Note**: Individual tool pages (`pages/` directory) are generated automatically during the build process and are not committed to the repository.
 
 ## YAML File Format
 
-Each technique is stored in its own YAML file with the following structure:
+Each tool is stored in its own YAML file with the following structure:
 
 ```yaml
-id: unique-technique-id
-title: Technique Name
-description: Brief description of the technique
-severity: low|medium|high
-category: category-name
-tags:
-  - Windows
-  - Mac
-  - Linux
-  - GUI
-  - CLI
-  - Run Command
-  - Open File Explorer
-  - Clear Mark of The Web
-  - UAC
-  - Remote Access
-  - Download
-  - Popup
-  - Payment
-  - Personal Information
-  - Document Request
-  - Fake Alert
-  - Email
-  - Web Browser
-  - File Attachment
-  - Phone Call
-iocfs:
-  - Indicator of ClickFix 1
-  - Indicator of ClickFix 2
-  - ...
-examples:
-  - Example scenario 1
-  - Example scenario 2
-  - ...
-prevention:
-  - Prevention tip 1
-  - Prevention tip 2
-  - ...
+Name: "Tool Name"
+Description: "Brief description of the tool"
+Author: "ClickFix Wiki"
+Created: "YYYY-MM-DD"
+Category: "category-name"
+Tags: ["Windows", "CLI", "GUI", "System Tools"]
+
+Techniques:
+  - Name: "Technique Name"
+    Description: "Description of the technique"
+    Steps:
+      - "Step 1 description"
+      - "Step 2 description"
+      - "Step 3 description"
+    Prerequisites: "Requirements and permissions needed"
+    References:
+      - "https://official-documentation-url"
 ```
 
 For a quick reference of the YAML format, see `yaml-quick-reference.md`.
@@ -92,11 +72,11 @@ This website is designed to work with GitHub Pages. Simply:
 
 ## Contributing
 
-To add new techniques:
+To add new tools:
 
-1. Run `node add-technique.js` to create a new technique interactively
-2. Or manually create a new YAML file in the `techniques/` directory
-3. Follow the established format (see `yaml-quick-reference.md` for details)
+1. Copy `technique-template.yaml` to create a new tool file
+2. Fill in the tool information following the established format
+3. Add techniques with steps, prerequisites, and references
 4. Submit a pull request
 
 The HTML pages will be generated automatically during the GitHub Actions build process.
@@ -104,50 +84,58 @@ The HTML pages will be generated automatically during the GitHub Actions build p
 ### Available Scripts
 
 - `npm run start` - Start local development server (generates pages locally)
-- `npm run add-technique` - Add a new technique interactively
-- `npm run generate-pages` - Generate individual technique pages locally
+- `npm run generate-pages` - Generate individual tool pages locally
 - `npm run clean` - Remove generated files
 - `npm run build` - Generate pages (alias for generate-pages)
 
+## Current Tools
+
+The database currently includes documentation for the following Windows system tools:
+
+- **Command Prompt (cmd.exe)**: Windows command-line interpreter for executing commands and batch files
+- **PowerShell (powershell.exe)**: Advanced command-line shell and scripting language for Windows
+- **Registry Editor (regedit.exe)**: Windows registry editor for viewing and modifying system registry
+
 ## Categories
 
-- **Phone Scams**: Techniques involving phone calls
-- **Email Scams**: Techniques involving email communication
-- **Web Scams**: Techniques involving websites and popups
+- **command-line**: Command-line tools and utilities
+- **system-tools**: System administration and configuration tools
 
 ## Tag Categories
 
 ### Operating System
-- **Windows**: Techniques targeting Windows systems
-- **Mac**: Techniques targeting macOS systems
-- **Linux**: Techniques targeting Linux systems
+- **Windows**: Tools specific to Windows operating system
 
-### Capabilities
-- **GUI**: Techniques using graphical interfaces
-- **CLI**: Techniques using command-line interfaces
-- **Run Command**: Techniques that execute commands
-- **Open File Explorer**: Techniques that open file managers
-- **Clear Mark of The Web**: Techniques that bypass security warnings
-- **UAC**: Techniques involving User Account Control
-- **Remote Access**: Techniques that grant remote access
-- **Download**: Techniques involving file downloads
-- **Popup**: Techniques using popup windows
-- **Payment**: Techniques involving financial transactions
-- **Personal Information**: Techniques that steal personal data
-- **Document Request**: Techniques requesting documents
-- **Fake Alert**: Techniques using fake security alerts
+### Interface Type
+- **CLI**: Command-line interface tools
+- **GUI**: Graphical user interface tools
 
-### Other
-- **Email**: Techniques involving email communication
-- **Web Browser**: Techniques using web browsers
-- **File Attachment**: Techniques involving file attachments
-- **Phone Call**: Techniques involving phone calls
+### Function
+- **Command Line**: Command-line execution tools
+- **Scripting**: Scripting and automation tools
+- **System Tools**: System administration tools
+- **Registry**: Registry manipulation tools
+- **System Configuration**: System configuration tools
 
-## Severity Levels
+## Tool Categories
 
-- **Low**: Basic social engineering techniques
-- **Medium**: More sophisticated techniques requiring some technical knowledge
-- **High**: Advanced techniques requiring significant technical expertise
+### Command Line Tools
+- **Command Prompt**: Basic command-line operations
+- **PowerShell**: Advanced scripting and automation
+
+### System Administration
+- **Registry Editor**: System registry management
+- **System Configuration**: System settings and configuration
+
+## Security Notice
+
+This documentation is provided for educational and legitimate system administration purposes. These tools can be powerful and should be used responsibly:
+
+- Always understand what a command does before executing it
+- Use administrator privileges only when necessary
+- Be cautious when modifying system registry
+- Follow security best practices when using system tools
+- These tools can be misused in social engineering attacks - this documentation helps users understand proper usage
 
 ## License
 
@@ -155,4 +143,4 @@ This project is open source and available under the MIT License.
 
 ## Disclaimer
 
-This website is for educational and awareness purposes only. The techniques documented here are used by malicious actors, and this information is provided to help identify and prevent such attacks. 
+This website is for educational and legitimate system administration purposes only. The tools documented here are standard Windows system utilities that can be used for both legitimate and malicious purposes. This documentation is provided to help users understand proper usage and be aware of potential security implications. 

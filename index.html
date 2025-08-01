@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickFix Techniques - Social Engineering Pretenses</title>
+    <title>ClickFix Wiki - Windows System Tools Documentation</title>
     <style>
         * {
             margin: 0;
@@ -63,7 +63,7 @@
             border-color: #667eea;
         }
 
-        .techniques-list {
+        .tools-list {
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -71,7 +71,7 @@
             overflow: hidden;
         }
 
-        .technique-item {
+        .tool-item {
             display: flex;
             align-items: center;
             padding: 1rem 1.5rem;
@@ -81,15 +81,15 @@
             transition: background-color 0.2s;
         }
 
-        .technique-item:last-child {
+        .tool-item:last-child {
             border-bottom: none;
         }
 
-        .technique-item:hover {
+        .tool-item:hover {
             background-color: #f8f9fa;
         }
 
-        .technique-title {
+        .tool-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: #2c3e50;
@@ -97,25 +97,23 @@
             margin-right: 1rem;
         }
 
-        .technique-meta {
+        .tool-meta {
             display: flex;
             gap: 0.5rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
-        .severity {
+        .category {
             display: inline-block;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             margin-top: 0.5rem;
+            background: #e9ecef;
+            color: #495057;
         }
-
-        .severity.low { background: #d4edda; color: #155724; }
-        .severity.medium { background: #fff3cd; color: #856404; }
-        .severity.high { background: #f8d7da; color: #721c24; }
 
         .no-results {
             text-align: center;
@@ -231,11 +229,11 @@
             background: #c82333;
         }
 
-        .technique-tags {
+        .tool-tags {
             margin-top: 0.5rem;
         }
 
-        .technique-tag {
+        .tool-tag {
             display: inline-block;
             padding: 0.1rem 0.4rem;
             background: #e9ecef;
@@ -246,7 +244,7 @@
             line-height: 1.2;
         }
 
-        .techniques-list .technique-tag {
+        .tools-list .tool-tag {
             font-size: 0.65rem;
             padding: 0.15rem 0.5rem;
         }
@@ -276,14 +274,14 @@
 <body>
     <div class="header">
         <div class="container">
-            <h1>ClickFix Techniques</h1>
-            <p>Social Engineering Pretenses and Indicators of ClickFix (IoCF)</p>
+            <h1>ClickFix Wiki</h1>
+            <p>Windows System Tools and Command-Line Utilities Documentation</p>
         </div>
     </div>
 
     <div class="container">
         <div class="search-section">
-            <input type="text" class="search-box" id="searchBox" placeholder="Search techniques, descriptions, or IoCFs...">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search tools, descriptions, or techniques...">
         </div>
 
         <div class="filter-section">
@@ -298,16 +296,16 @@
                 </div>
 
                 <div class="filter-group">
-                    <div class="filter-group-title">Capabilities</div>
-                    <div class="filter-tags" id="capabilityTags">
-                        <!-- Capability tags will be populated here -->
+                    <div class="filter-group-title">Interface Type</div>
+                    <div class="filter-tags" id="interfaceTags">
+                        <!-- Interface tags will be populated here -->
                     </div>
                 </div>
 
                 <div class="filter-group">
-                    <div class="filter-group-title">Other</div>
-                    <div class="filter-tags" id="otherTags">
-                        <!-- Other tags will be populated here -->
+                    <div class="filter-group-title">Function</div>
+                    <div class="filter-tags" id="functionTags">
+                        <!-- Function tags will be populated here -->
                     </div>
                 </div>
             </div>
@@ -316,68 +314,125 @@
         </div>
 
         <div class="stats">
-            <span id="totalTechniques">0</span> techniques documented • 
-            <span id="visibleTechniques">0</span> currently visible
+            <span id="totalTools">0</span> tools documented • 
+            <span id="visibleTools">0</span> currently visible
         </div>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Loading techniques...</p>
+            <p>Loading tools...</p>
         </div>
 
-        <div class="techniques-list" id="techniquesGrid">
-            <!-- Techniques will be loaded here -->
+        <div class="tools-list" id="toolsGrid">
+            <!-- Tools will be loaded here -->
         </div>
 
         <div class="no-results" id="noResults" style="display: none;">
-            <h3>No techniques found</h3>
+            <h3>No tools found</h3>
             <p>Try adjusting your search terms</p>
         </div>
     </div>
 
     <div class="footer">
         <div class="container">
-            <p>Documenting social engineering techniques to raise awareness and improve security</p>
+            <p>Documenting Windows system tools for educational and legitimate system administration purposes</p>
         </div>
     </div>
 
     <script>
-        // Simple YAML parser
+        // Parse YAML content
         function parseYAML(yamlText) {
             const lines = yamlText.split('\n');
             const result = {};
-            let currentKey = null;
-            let currentArray = null;
-            let indentLevel = 0;
+            let currentTechnique = null;
+            let currentTechniqueKey = null;
+            let inTechniques = false;
 
-            for (let line of lines) {
-                line = line.trim();
-                if (!line || line.startsWith('#')) continue;
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const trimmedLine = line.trim();
+                if (!trimmedLine || trimmedLine.startsWith('#')) continue;
 
-                // Check if this is a key-value pair
-                if (line.includes(':') && !line.startsWith('-')) {
-                    const colonIndex = line.indexOf(':');
-                    const key = line.substring(0, colonIndex).trim();
-                    const value = line.substring(colonIndex + 1).trim();
+                // Get indentation level
+                const indentLevel = line.length - line.trimStart().length;
+
+                // Handle key-value pairs
+                if (trimmedLine.includes(':') && !trimmedLine.startsWith('-')) {
+                    const colonIndex = trimmedLine.indexOf(':');
+                    const key = trimmedLine.substring(0, colonIndex).trim();
+                    const value = trimmedLine.substring(colonIndex + 1).trim();
                     
                     if (value === '') {
-                        // This is a key with no value (likely an array or object)
-                        currentKey = key;
-                        currentArray = null;
+                        // Empty value - initialize array
                         result[key] = [];
+                        if (key === 'Techniques') {
+                            inTechniques = true;
+                        }
                     } else {
-                        // This is a simple key-value pair
-                        result[key] = value;
-                        currentKey = null;
-                        currentArray = null;
+                        // Has value
+                        if (value.startsWith('[') && value.endsWith(']')) {
+                            // Array format like Tags: ["Windows", "CLI"]
+                            const arrayContent = value.substring(1, value.length - 1);
+                            result[key] = arrayContent.split(',').map(item => 
+                                item.trim().replace(/"/g, '')
+                            ).filter(item => item.length > 0);
+                        } else {
+                            result[key] = value.replace(/"/g, '');
+                        }
                     }
-                } else if (line.startsWith('-')) {
-                    // This is an array item
-                    const item = line.substring(1).trim();
-                    if (currentArray) {
-                        currentArray.push(item);
-                    } else if (currentKey) {
-                        result[currentKey].push(item);
+                } else if (trimmedLine.startsWith('-')) {
+                    // Array item
+                    const item = trimmedLine.substring(1).trim();
+                    
+                    if (inTechniques && indentLevel === 2) {
+                        // Start of a new technique
+                        currentTechnique = {};
+                        result.Techniques.push(currentTechnique);
+                        currentTechniqueKey = null;
+                        
+                        // Parse the technique name if it's on the same line
+                        if (item.includes('Name:')) {
+                            const colonIndex = item.indexOf(':');
+                            const value = item.substring(colonIndex + 1).trim();
+                            currentTechnique.Name = value.replace(/"/g, '');
+                        }
+                        
+                        // Look ahead for technique properties
+                        let j = i + 1;
+                        while (j < lines.length) {
+                            const nextLine = lines[j];
+                            const nextTrimmed = nextLine.trim();
+                            const nextIndent = nextLine.length - nextLine.trimStart().length;
+                            
+                            if (nextIndent === 0) {
+                                // Back to root level
+                                break;
+                            } else if (nextIndent === 2 && nextTrimmed.startsWith('-')) {
+                                // Next technique starts
+                                break;
+                            } else if (nextIndent === 4 && nextTrimmed.includes(':')) {
+                                // Technique property
+                                const colonIndex = nextTrimmed.indexOf(':');
+                                const key = nextTrimmed.substring(0, colonIndex).trim();
+                                const value = nextTrimmed.substring(colonIndex + 1).trim();
+                                currentTechnique[key] = value.replace(/"/g, '');
+                                currentTechniqueKey = key;
+                                
+                                if (key === 'Steps' || key === 'References') {
+                                    // Initialize array
+                                    currentTechnique[key] = [];
+                                }
+                            } else if (nextIndent === 6 && nextTrimmed.startsWith('-')) {
+                                // Array item for Steps or References
+                                const arrayItem = nextTrimmed.substring(1).trim();
+                                if (currentTechniqueKey === 'Steps') {
+                                    currentTechnique.Steps.push(arrayItem.replace(/"/g, ''));
+                                } else if (currentTechniqueKey === 'References') {
+                                    currentTechnique.References.push(arrayItem.replace(/"/g, ''));
+                                }
+                            }
+                            j++;
+                        }
                     }
                 }
             }
@@ -385,52 +440,49 @@
             return result;
         }
 
-        // Tag categories
+        // Tag categories for tools
         const tagCategories = {
-            os: ['Windows', 'Mac', 'Linux'],
-            capabilities: ['GUI', 'CLI', 'Run Command', 'Open File Explorer', 'Clear Mark of The Web', 'UAC', 'Remote Access', 'Download', 'Popup', 'Payment', 'Personal Information', 'Document Request', 'Fake Alert'],
-            other: ['Email', 'Web Browser', 'File Attachment', 'Phone Call']
+            os: ['Windows'],
+            interface: ['CLI', 'GUI'],
+            function: ['Command Line', 'Scripting', 'System Tools', 'Registry', 'System Configuration']
         };
 
         // Selected filters
         let selectedFilters = {
             os: [],
-            capabilities: [],
-            other: []
+            interface: [],
+            function: []
         };
 
-        // Load techniques from YAML files dynamically
-        async function loadTechniques() {
-            const techniques = [];
+        // Load tools from YAML files dynamically
+        async function loadTools() {
+            const tools = [];
 
             try {
                 // Try to load the index file first
-                let techniqueFiles = [];
+                let toolFiles = [];
                 
                 try {
                     const indexResponse = await fetch('techniques/index.txt');
                     if (indexResponse.ok) {
                         const indexText = await indexResponse.text();
-                        techniqueFiles = indexText.trim().split('\n').map(filename => 
+                        toolFiles = indexText.trim().split('\n').map(filename => 
                             `techniques/${filename.trim()}`
                         ).filter(filename => filename.endsWith('.yaml'));
-                        console.log(`Loaded ${techniqueFiles.length} files from index.txt`);
+                        console.log(`Loaded ${toolFiles.length} files from index.txt`);
                     }
                 } catch (indexError) {
                     console.warn('Could not load index.txt:', indexError);
                 }
                 
                 // If we couldn't load the index, use a fallback approach
-                if (techniqueFiles.length === 0) {
+                if (toolFiles.length === 0) {
                     console.log('No index file found, using fallback approach');
                     // Try common YAML files that might exist
                     const commonFiles = [
-                        'techniques/fake-support-call.yaml',
-                        'techniques/fake-email-attachment.yaml',
-                        'techniques/fake-software-update.yaml',
-                        'techniques/fake-antivirus-scan.yaml',
-                        'techniques/fake-prize-notification.yaml',
-                        'techniques/fake-job-offer.yaml'
+                        'techniques/cmd.yaml',
+                        'techniques/powershell.yaml',
+                        'techniques/regedit.yaml'
                     ];
                     
                     // Test which files exist by trying to fetch them
@@ -438,7 +490,7 @@
                         try {
                             const testResponse = await fetch(file, { method: 'HEAD' });
                             if (testResponse.ok) {
-                                techniqueFiles.push(file);
+                                toolFiles.push(file);
                             }
                         } catch (e) {
                             // File doesn't exist or can't be accessed
@@ -446,10 +498,10 @@
                     }
                 }
                 
-                console.log(`Found ${techniqueFiles.length} YAML files to load`);
+                console.log(`Found ${toolFiles.length} YAML files to load`);
                 
                 // Load all found YAML files
-                for (const file of techniqueFiles) {
+                for (const file of toolFiles) {
                     try {
                         const response = await fetch(file, {
                             method: 'GET',
@@ -461,10 +513,10 @@
                         
                         if (response.ok) {
                             const yamlText = await response.text();
-                            const technique = parseYAML(yamlText);
+                            const tool = parseYAML(yamlText);
                             // Add the ID from the filename
-                            technique.id = file.replace('techniques/', '').replace('.yaml', '');
-                            techniques.push(technique);
+                            tool.id = file.replace('techniques/', '').replace('.yaml', '');
+                            tools.push(tool);
                             console.log(`Successfully loaded ${file}`);
                         } else {
                             console.warn(`Failed to load ${file}: ${response.status} ${response.statusText}`);
@@ -474,107 +526,82 @@
                     }
                 }
                 
-                if (techniques.length === 0) {
+                if (tools.length === 0) {
                     console.warn('No YAML files loaded, using fallback data');
-                    return getFallbackTechniques();
+                    return getFallbackTools();
                 }
                 
-                return techniques;
+                return tools;
             } catch (error) {
-                console.error('Error loading techniques:', error);
+                console.error('Error loading tools:', error);
                 // Fallback to hardcoded data if YAML loading fails
-                return getFallbackTechniques();
+                return getFallbackTools();
             }
         }
 
-        // Fallback techniques if YAML loading fails
-        function getFallbackTechniques() {
+        // Fallback tools if YAML loading fails
+        function getFallbackTools() {
             return [
                 {
-                    id: 'fake-support-call',
-                    title: 'Fake Technical Support Call',
-                    description: 'Scammer pretends to be from Microsoft, Apple, or other tech companies offering "urgent" technical support.',
-                    iocfs: [
-                        'Unsolicited phone calls claiming to be from tech companies',
-                        'Urgency and pressure tactics',
-                        'Requests to install remote access software',
-                        'Claims about "viruses" or "security threats"',
-                        'Asking for payment via gift cards or cryptocurrency'
-                    ],
-                    severity: 'medium',
-                    category: 'phone-scam',
-                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'CLI', 'Remote Access', 'Phone Call']
+                    id: 'cmd',
+                    Name: 'Command Prompt (cmd.exe)',
+                    Description: 'Windows command-line interpreter for executing commands and batch files',
+                    Category: 'command-line',
+                    Tags: ['Windows', 'CLI', 'Command Line', 'System Tools'],
+                    Techniques: [
+                        {
+                            Name: 'Basic Command Execution',
+                            Description: 'Execute commands directly in Command Prompt',
+                            Steps: [
+                                'Open Command Prompt (Press Win+R, type "cmd", press Enter)',
+                                'Type the command: dir',
+                                'Press Enter to execute'
+                            ],
+                            Prerequisites: 'Windows operating system',
+                            References: ['https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd']
+                        }
+                    ]
                 },
                 {
-                    id: 'fake-email-attachment',
-                    title: 'Fake Email with Malicious Attachment',
-                    description: 'Scammer sends emails with fake invoices, receipts, or documents containing malicious payloads.',
-                    iocfs: [
-                        'Unexpected email attachments from unknown senders',
-                        'Urgent subject lines about payments or invoices',
-                        'File extensions like .exe, .bat, .ps1 in attachments',
-                        'Poor grammar or spelling in emails',
-                        'Suspicious sender addresses'
-                    ],
-                    severity: 'low',
-                    category: 'email-scam',
-                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'CLI', 'Email', 'File Attachment', 'Run Command']
+                    id: 'powershell',
+                    Name: 'PowerShell (powershell.exe)',
+                    Description: 'Advanced command-line shell and scripting language for Windows',
+                    Category: 'command-line',
+                    Tags: ['Windows', 'CLI', 'Scripting', 'System Administration'],
+                    Techniques: [
+                        {
+                            Name: 'Basic PowerShell Commands',
+                            Description: 'Execute basic PowerShell commands',
+                            Steps: [
+                                'Open PowerShell (Press Win+X, select "Windows PowerShell")',
+                                'Type: Get-Process',
+                                'Press Enter to see running processes'
+                            ],
+                            Prerequisites: 'Windows operating system',
+                            References: ['https://docs.microsoft.com/en-us/powershell/scripting/overview']
+                        }
+                    ]
                 },
                 {
-                    id: 'fake-software-update',
-                    title: 'Fake Software Update Popup',
-                    description: 'Malicious websites or ads display fake update notifications to trick users into downloading malware.',
-                    iocfs: [
-                        'Unexpected update popups from unknown sources',
-                        'Claims about "critical" security updates',
-                        'Fake progress bars showing "scanning"',
-                        'Demands for immediate action'
-                    ],
-                    severity: 'low',
-                    category: 'web-scam',
-                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Web Browser', 'Popup', 'Download']
-                },
-                {
-                    id: 'fake-antivirus-scan',
-                    title: 'Fake Antivirus Scan Results',
-                    description: 'Scammers create fake antivirus interfaces showing false threats to trick users into paying for "removal".',
-                    iocfs: [
-                        'Unexpected antivirus scan results',
-                        'Popups claiming to find "threats"',
-                        'Requests for payment to remove "viruses"',
-                        'Fake security alerts'
-                    ],
-                    severity: 'medium',
-                    category: 'web-scam',
-                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Web Browser', 'Popup', 'Payment', 'Fake Alert']
-                },
-                {
-                    id: 'fake-prize-notification',
-                    title: 'Fake Prize or Lottery Notification',
-                    description: 'Scammers claim the victim has won a prize or lottery and need to provide personal information or pay fees.',
-                    iocfs: [
-                        'Unsolicited prize notifications',
-                        'Requests for personal information',
-                        'Demands for payment to claim prizes',
-                        'Urgency and pressure tactics'
-                    ],
-                    severity: 'low',
-                    category: 'email-scam',
-                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Email', 'Web Browser', 'Personal Information', 'Payment']
-                },
-                {
-                    id: 'fake-job-offer',
-                    title: 'Fake Job Offer Scam',
-                    description: 'Scammers pose as recruiters offering fake job opportunities to steal personal information or money.',
-                    iocfs: [
-                        'Unsolicited job offers via email',
-                        'Requests for personal information',
-                        'Demands for payment for "background checks"',
-                        'Poor grammar or spelling'
-                    ],
-                    severity: 'medium',
-                    category: 'email-scam',
-                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Email', 'Web Browser', 'Personal Information', 'Payment', 'Document Request']
+                    id: 'regedit',
+                    Name: 'Registry Editor (regedit.exe)',
+                    Description: 'Windows registry editor for viewing and modifying system registry',
+                    Category: 'system-tools',
+                    Tags: ['Windows', 'GUI', 'Registry', 'System Configuration'],
+                    Techniques: [
+                        {
+                            Name: 'Basic Registry Navigation',
+                            Description: 'Navigate through registry keys and values',
+                            Steps: [
+                                'Open Registry Editor (Press Win+R, type "regedit", press Enter)',
+                                'Expand HKEY_LOCAL_MACHINE',
+                                'Navigate to SOFTWARE\\Microsoft\\Windows\\CurrentVersion',
+                                'View values in the right panel'
+                            ],
+                            Prerequisites: 'Windows operating system',
+                            References: ['https://docs.microsoft.com/en-us/windows/win32/sysinfo/registry']
+                        }
+                    ]
                 }
             ];
         }
@@ -591,24 +618,24 @@
                 osTagsContainer.appendChild(tagElement);
             });
 
-            // Capability tags
-            const capabilityTagsContainer = document.getElementById('capabilityTags');
-            tagCategories.capabilities.forEach(tag => {
+            // Interface tags
+            const interfaceTagsContainer = document.getElementById('interfaceTags');
+            tagCategories.interface.forEach(tag => {
                 const tagElement = document.createElement('div');
                 tagElement.className = 'filter-tag';
                 tagElement.textContent = tag;
-                tagElement.onclick = () => toggleFilter('capabilities', tag, tagElement);
-                capabilityTagsContainer.appendChild(tagElement);
+                tagElement.onclick = () => toggleFilter('interface', tag, tagElement);
+                interfaceTagsContainer.appendChild(tagElement);
             });
 
-            // Other tags
-            const otherTagsContainer = document.getElementById('otherTags');
-            tagCategories.other.forEach(tag => {
+            // Function tags
+            const functionTagsContainer = document.getElementById('functionTags');
+            tagCategories.function.forEach(tag => {
                 const tagElement = document.createElement('div');
                 tagElement.className = 'filter-tag';
                 tagElement.textContent = tag;
-                tagElement.onclick = () => toggleFilter('other', tag, tagElement);
-                otherTagsContainer.appendChild(tagElement);
+                tagElement.onclick = () => toggleFilter('function', tag, tagElement);
+                functionTagsContainer.appendChild(tagElement);
             });
         }
 
@@ -628,15 +655,15 @@
         // Apply all filters
         function applyFilters() {
             const searchTerm = document.getElementById('searchBox').value;
-            filterTechniques(searchTerm);
+            filterTools(searchTerm);
         }
 
         // Clear all filters
         function clearAllFilters() {
             selectedFilters = {
                 os: [],
-                capabilities: [],
-                other: []
+                interface: [],
+                function: []
             };
             
             // Remove selected class from all filter tags
@@ -647,74 +674,77 @@
             applyFilters();
         }
 
-        // Render techniques
-        function renderTechniques(techniquesToRender) {
-            const grid = document.getElementById('techniquesGrid');
+        // Render tools
+        function renderTools(toolsToRender) {
+            const grid = document.getElementById('toolsGrid');
             const noResults = document.getElementById('noResults');
             const loading = document.getElementById('loading');
             
             loading.style.display = 'none';
             
-            if (techniquesToRender.length === 0) {
+            if (toolsToRender.length === 0) {
                 grid.innerHTML = '';
                 noResults.style.display = 'block';
             } else {
                 noResults.style.display = 'none';
-                grid.innerHTML = techniquesToRender.map(technique => `
-                    <a href="pages/${technique.id}.html" class="technique-item" data-id="${technique.id}">
-                        <div class="technique-title">${technique.title}</div>
-                        <div class="technique-meta">
-                            <span class="severity ${technique.severity}">${technique.severity.toUpperCase()}</span>
-                            ${technique.tags ? technique.tags.map(tag => `<span class="technique-tag">${tag}</span>`).join('') : ''}
+                grid.innerHTML = toolsToRender.map(tool => `
+                    <a href="pages/${tool.id}.html" class="tool-item" data-id="${tool.id}">
+                        <div class="tool-title">${tool.Name}</div>
+                        <div class="tool-meta">
+                            <span class="category">${tool.Category}</span>
+                            ${tool.Tags ? tool.Tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('') : ''}
                         </div>
                     </a>
                 `).join('');
             }
 
             // Update stats
-            document.getElementById('totalTechniques').textContent = window.allTechniques ? window.allTechniques.length : 0;
-            document.getElementById('visibleTechniques').textContent = techniquesToRender.length;
+            document.getElementById('totalTools').textContent = window.allTools ? window.allTools.length : 0;
+            document.getElementById('visibleTools').textContent = toolsToRender.length;
         }
 
         // Search and filter functionality
-        function filterTechniques(searchTerm) {
-            if (!window.allTechniques) return;
+        function filterTools(searchTerm) {
+            if (!window.allTools) return;
             
-            let filtered = window.allTechniques;
+            let filtered = window.allTools;
 
             // Apply search filter
             if (searchTerm) {
                 const searchLower = searchTerm.toLowerCase();
-                filtered = filtered.filter(technique => (
-                    technique.title.toLowerCase().includes(searchLower) ||
-                    technique.description.toLowerCase().includes(searchLower) ||
-                    technique.iocfs.some(iocf => iocf.toLowerCase().includes(searchLower))
+                filtered = filtered.filter(tool => (
+                    tool.Name.toLowerCase().includes(searchLower) ||
+                    tool.Description.toLowerCase().includes(searchLower) ||
+                    (tool.Techniques && tool.Techniques.some(technique => 
+                        technique.Name.toLowerCase().includes(searchLower) ||
+                        technique.Description.toLowerCase().includes(searchLower)
+                    ))
                 ));
             }
 
             // Apply tag filters
             const allSelectedTags = [
                 ...selectedFilters.os,
-                ...selectedFilters.capabilities,
-                ...selectedFilters.other
+                ...selectedFilters.interface,
+                ...selectedFilters.function
             ];
 
             if (allSelectedTags.length > 0) {
-                filtered = filtered.filter(technique => {
-                    if (!technique.tags) return false;
+                filtered = filtered.filter(tool => {
+                    if (!tool.Tags) return false;
                     return allSelectedTags.every(selectedTag => 
-                        technique.tags.includes(selectedTag)
+                        tool.Tags.includes(selectedTag)
                     );
                 });
             }
 
-            renderTechniques(filtered);
+            renderTools(filtered);
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', async () => {
-            const techniques = await loadTechniques();
-            window.allTechniques = techniques;
+            const tools = await loadTools();
+            window.allTools = tools;
             
             // Populate filter tags
             populateFilterTags();
@@ -722,12 +752,12 @@
             // Set up clear filters button
             document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
             
-            renderTechniques(techniques);
+            renderTools(tools);
 
             // Search functionality
             const searchBox = document.getElementById('searchBox');
             searchBox.addEventListener('input', (e) => {
-                filterTechniques(e.target.value);
+                filterTools(e.target.value);
             });
         });
     </script>
