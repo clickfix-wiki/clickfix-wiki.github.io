@@ -45,9 +45,6 @@ include:
   - _sass
   - assets
 
-# Theme settings
-theme: jekyll-theme-cayman
-
 # Social media
 github:
   is_project_page: true
