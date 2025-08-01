@@ -1,121 +1,22 @@
-# ClickFix Technique Template
-# Copy this template and fill in the details for your technique
+# ClickFix Tool Template
+# Copy this template to create a new tool YAML file
 
-id: unique-technique-id
-title: Technique Name
-description: Brief description of the technique and how it works
-severity: low|medium|high
-category: phone-scam|email-scam|web-scam
+Name: "Tool Name"
+Description: "Brief description of the tool and its purpose"
+Author: "ClickFix Wiki"
+Created: "2024-01-15"
+Category: "command-line"  # Options: command-line, gui, system-tools, networking, security
+Tags: ["Windows", "CLI", "System Tools"]  # Available tags: Windows, Linux, macOS, CLI, GUI, System Tools, Networking, Security, Scripting, System Administration, Registry, File Management, Process Management, Network Tools, Security Tools, Development Tools
 
-# Tags - Choose from the available categories below
-tags:
-  # Operating System (choose applicable)
-  - Windows
-  - Mac
-  - Linux
-  
-  # Capabilities (choose applicable)
-  - GUI
-  - CLI
-  - Run Command
-  - Open File Explorer
-  - Clear Mark of The Web
-  - UAC
-  - Remote Access
-  - Download
-  - Popup
-  - Payment
-  - Personal Information
-  - Document Request
-  - Fake Alert
-  
-  # Other (choose applicable)
-  - Email
-  - Web Browser
-  - File Attachment
-  - Phone Call
-
-# Indicators of ClickFix (IoCF) - Red flags that indicate this technique
-iocfs:
-  - First indicator of compromise
-  - Second indicator of compromise
-  - Third indicator of compromise
-  - Add more as needed
-
-# Example scenarios or messages used in this technique
-examples:
-  - "Example scenario 1"
-  - "Example scenario 2"
-  - "Example scenario 3"
-  - Add more as needed
-
-# Prevention strategies and tips
-prevention:
-  - First prevention tip
-  - Second prevention tip
-  - Third prevention tip
-  - Add more as needed
-
-# =============================================================================
-# AVAILABLE TAGS REFERENCE
-# =============================================================================
-
-# Operating System Tags:
-# - Windows: Techniques targeting Windows systems
-# - Mac: Techniques targeting macOS systems  
-# - Linux: Techniques targeting Linux systems
-
-# Capability Tags:
-# - GUI: Techniques using graphical interfaces
-# - CLI: Techniques using command-line interfaces
-# - Run Command: Techniques that execute commands
-# - Open File Explorer: Techniques that open file managers
-# - Clear Mark of The Web: Techniques that bypass security warnings
-# - UAC: Techniques involving User Account Control
-# - Remote Access: Techniques that grant remote access
-# - Download: Techniques involving file downloads
-# - Popup: Techniques using popup windows
-# - Payment: Techniques involving financial transactions
-# - Personal Information: Techniques that steal personal data
-# - Document Request: Techniques requesting documents
-# - Fake Alert: Techniques using fake security alerts
-
-# Other Tags:
-# - Email: Techniques involving email communication
-# - Web Browser: Techniques using web browsers
-# - File Attachment: Techniques involving file attachments
-# - Phone Call: Techniques involving phone calls
-
-# =============================================================================
-# EXAMPLE COMPLETED TECHNIQUE
-# =============================================================================
-
-# id: fake-support-call
-# title: Fake Technical Support Call
-# description: Scammer pretends to be from Microsoft, Apple, or other tech companies offering "urgent" technical support.
-# severity: medium
-# category: phone-scam
-# tags:
-#   - Windows
-#   - Mac
-#   - Linux
-#   - GUI
-#   - CLI
-#   - Remote Access
-#   - Phone Call
-# iocfs:
-#   - Unsolicited phone calls claiming to be from tech companies
-#   - Urgency and pressure tactics
-#   - Requests to install remote access software
-#   - Claims about "viruses" or "security threats"
-#   - Asking for payment via gift cards or cryptocurrency
-# examples:
-#   - "Microsoft calling about your computer being infected"
-#   - "Apple support calling about your iCloud being compromised"
-#   - "Windows security team calling about urgent threats"
-# prevention:
-#   - Never give remote access to your computer to unsolicited callers
-#   - Hang up on unsolicited tech support calls
-#   - Verify company contact information independently
-#   - Never pay for tech support with gift cards
-#   - Contact companies directly using official numbers 
+Techniques:
+  - Name: "Technique Name"
+    Description: "Description of this specific technique"
+    Steps:
+      - "Step 1: First action to take"
+      - "Step 2: Second action to take"
+      - "Step 3: Third action to take"
+    Prerequisites: "What is needed before starting (e.g., administrator privileges, specific software)"
+    References:
+      - "https://docs.microsoft.com/en-us/example-link"
+      - "https://manpages.ubuntu.com/example-link"
+      - "https://developer.apple.com/example-link" 

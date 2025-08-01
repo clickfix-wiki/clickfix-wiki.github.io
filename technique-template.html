@@ -4,7 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITLE}} - ClickFix Wiki</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 1rem 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .tool-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .tool-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+
+        .tool-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tool-tags {
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: #e9ecef;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin: 0.1rem;
+            color: #495057;
+        }
+
+        .section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .techniques-section {
+            margin-top: 2rem;
+        }
+
+        .technique-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .technique-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .technique-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .technique-details {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .steps-section h4,
+        .prerequisites-section h4,
+        .references-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .steps-list {
+            list-style: decimal;
+            padding-left: 1.5rem;
+        }
+
+        .steps-list li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .prerequisites-section p {
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 0.75rem 1rem;
+            border-radius: 0 4px 4px 0;
+            color: #856404;
+        }
+
+        .references-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .references-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .references-list a {
+            color: #667eea;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .references-list a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .technique-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -14,45 +220,30 @@
         </div>
     </div>
 
-    <div class="container-lg px-3 my-5 markdown-body">
-        <div class="entry-header">
-            <h1>{{TITLE}}</h1>
-            <p class="description">{{DESCRIPTION}}</p>
-            <div class="meta">
-                <span class="author">By {{AUTHOR}}</span>
-                <span class="date">{{CREATED}}</span>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to all tools</a>
+
+        <div class="tool-header">
+            <h1 class="tool-title">{{TITLE}}</h1>
+            <div class="tool-meta">
+                <span class="category">{{CATEGORY}}</span>
             </div>
-            {% if page.Category %}
-            <div class="category">
-                <span class="category-tag">{{CATEGORY}}</span>
+            <p class="tool-description">{{DESCRIPTION}}</p>
+            <div class="tool-tags">
+                {{TAGS}}
             </div>
             {% endif %}
         </div>
 
-        {% if page.Tags %}
-        <div class="tags-section">
-            <h3>Tags</h3>
-            <div class="tags">
-                {{TAGS}}
-            </div>
-        </div>
-        {% endif %}
-
-        {% if page.Techniques %}
-        <div class="techniques-section">
-            <h2>Techniques</h2>
+        <div class="section">
+            <h2 class="section-title">Techniques</h2>
             {{TECHNIQUES}}
-        </div>
-        {% endif %}
-
-        <div class="navigation">
-            <a href="../index.html" class="btn btn-outline">← Back to Home</a>
         </div>
     </div>
 
     <div class="footer">
         <div class="container">
-            <p>Documenting social engineering techniques to raise awareness and improve security</p>
+            <p>Documenting Windows system tools for educational and legitimate system administration purposes</p>
         </div>
     </div>
 </body>

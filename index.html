@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickFix Wiki</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>ClickFix Wiki - Code execution by social engineering instructions</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="header">
@@ -16,7 +17,7 @@
 
     <div class="container">
         <div class="search-section">
-            <input type="text" class="search-box" id="searchBox" placeholder="Search">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search tools, descriptions, or techniques...">
         </div>
 
         <div class="filter-section">
@@ -31,16 +32,16 @@
                 </div>
 
                 <div class="filter-group">
-                    <div class="filter-group-title">Capabilities</div>
-                    <div class="filter-tags" id="capabilityTags">
-                        <!-- Capability tags will be populated here -->
+                    <div class="filter-group-title">Interface Type</div>
+                    <div class="filter-tags" id="interfaceTags">
+                        <!-- Interface tags will be populated here -->
                     </div>
                 </div>
 
                 <div class="filter-group">
-                    <div class="filter-group-title">Tags</div>
-                    <div class="filter-tags" id="otherTags">
-                        <!-- Other tags will be populated here -->
+                    <div class="filter-group-title">Function</div>
+                    <div class="filter-tags" id="functionTags">
+                        <!-- Function tags will be populated here -->
                     </div>
                 </div>
             </div>
@@ -48,29 +49,30 @@
             <button class="clear-filters" id="clearFilters">Clear All Filters</button>
         </div>
 
-        
+        <div class="stats">
+            <span id="totalTools">0</span> tools documented • 
+            <span id="visibleTools">0</span> currently visible
+        </div>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Loading techniques...</p>
+            <p>Loading tools...</p>
         </div>
 
-        <div class="techniques-list" id="techniquesGrid">
-            <!-- Techniques will be loaded here -->
+        <div class="tools-list" id="toolsGrid">
+            <!-- Tools will be loaded here -->
         </div>
 
         <div class="no-results" id="noResults" style="display: none;">
-            <h3>No techniques found</h3>
+            <h3>No tools found</h3>
             <p>Try adjusting your search terms</p>
         </div>
     </div>
 
     <div class="footer">
         <div class="container">
-            <p>Documenting social engineering techniques to raise awareness and improve security</p>
+            <p>Documenting Windows system tools for educational and legitimate system administration purposes</p>
         </div>
     </div>
-
-    <script src="assets/js/main.js"></script>
 </body>
 </html> 
