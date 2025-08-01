@@ -3,225 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{TITLE}} - ClickFix Techniques</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 0;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin: 1rem 0;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .technique-header {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 1rem 0;
-        }
-
-        .technique-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .technique-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .severity {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .severity.low { background: #d4edda; color: #155724; }
-        .severity.medium { background: #fff3cd; color: #856404; }
-        .severity.high { background: #f8d7da; color: #721c24; }
-
-        .category {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: #e9ecef;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #495057;
-        }
-
-        .technique-description {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .technique-tags {
-            margin-bottom: 1.5rem;
-        }
-
-        .technique-tag {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            background: #e9ecef;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            margin: 0.1rem;
-            color: #495057;
-        }
-
-        .section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 1rem 0;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .iocf-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .iocf-list li {
-            background: #fff5f5;
-            border-left: 3px solid #e74c3c;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .examples-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .examples-list li {
-            background: #f8f9fa;
-            border-left: 3px solid #667eea;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .prevention-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .prevention-list li {
-            background: #d4edda;
-            border-left: 3px solid #28a745;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-    </style>
+    <title>{{TITLE}} - ClickFix Wiki</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="header">
         <div class="container">
-            <h1>ClickFix Techniques</h1>
-            <p>Social Engineering Pretenses and Indicators of ClickFix (IoCF)</p>
+            <h1>ClickFix Wiki</h1>
+            <p>Code execution by social engineering instructions</p>
         </div>
     </div>
 
-    <div class="container">
-        <a href="../index.html" class="back-link">← Back to all techniques</a>
-
-        <div class="technique-header">
-            <h1 class="technique-title">{{TITLE}}</h1>
-            <div class="technique-meta">
-                <span class="severity {{SEVERITY}}">{{SEVERITY_UPPER}}</span>
-                <span class="category">{{CATEGORY}}</span>
+    <div class="container-lg px-3 my-5 markdown-body">
+        <div class="entry-header">
+            <h1>{{TITLE}}</h1>
+            <p class="description">{{DESCRIPTION}}</p>
+            <div class="meta">
+                <span class="author">By {{AUTHOR}}</span>
+                <span class="date">{{CREATED}}</span>
             </div>
-            <p class="technique-description">{{DESCRIPTION}}</p>
-            <div class="technique-tags">
+            {% if page.Category %}
+            <div class="category">
+                <span class="category-tag">{{CATEGORY}}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if page.Tags %}
+        <div class="tags-section">
+            <h3>Tags</h3>
+            <div class="tags">
                 {{TAGS}}
             </div>
         </div>
+        {% endif %}
 
-        <div class="section">
-            <h2 class="section-title">Indicators of ClickFix (IoCF)</h2>
-            <ul class="iocf-list">
-                {{IOCFS}}
-            </ul>
+        {% if page.Techniques %}
+        <div class="techniques-section">
+            <h2>Techniques</h2>
+            {{TECHNIQUES}}
         </div>
+        {% endif %}
 
-        <div class="section">
-            <h2 class="section-title">Examples</h2>
-            <ul class="examples-list">
-                {{EXAMPLES}}
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">Prevention</h2>
-            <ul class="prevention-list">
-                {{PREVENTION}}
-            </ul>
+        <div class="navigation">
+            <a href="../index.html" class="btn btn-outline">← Back to Home</a>
         </div>
     </div>
 
