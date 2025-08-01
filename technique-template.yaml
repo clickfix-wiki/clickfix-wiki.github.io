@@ -1,92 +1,22 @@
 # ClickFix Tool Template
-# Copy this template and fill in the details for your tool
+# Copy this template to create a new tool YAML file
 
 Name: "Tool Name"
 Description: "Brief description of the tool and its purpose"
 Author: "ClickFix Wiki"
-Created: "YYYY-MM-DD"
-Category: "command-line|system-tools"
+Created: "2024-01-15"
+Category: "command-line"  # Options: command-line, gui, system-tools, networking, security
+Tags: ["Windows", "CLI", "System Tools"]  # Available tags: Windows, Linux, macOS, CLI, GUI, System Tools, Networking, Security, Scripting, System Administration, Registry, File Management, Process Management, Network Tools, Security Tools, Development Tools
 
-# Tags - Choose from the available categories below
-Tags: 
-  # Operating System (choose applicable)
-  - "Windows"
-  
-  # Interface Type (choose applicable)
-  - "CLI"
-  - "GUI"
-  
-  # Function (choose applicable)
-  - "Command Line"
-  - "Scripting"
-  - "System Tools"
-  - "Registry"
-  - "System Configuration"
-
-# Techniques - List of specific techniques for using this tool
 Techniques:
   - Name: "Technique Name"
-    Description: "Description of what this technique does"
+    Description: "Description of this specific technique"
     Steps:
       - "Step 1: First action to take"
       - "Step 2: Second action to take"
       - "Step 3: Third action to take"
-      - "Add more steps as needed"
-    Prerequisites: "Requirements, permissions, or knowledge needed"
+    Prerequisites: "What is needed before starting (e.g., administrator privileges, specific software)"
     References:
-      - "https://official-microsoft-documentation-url"
-      - "Add more references as needed"
-
-  # Add more techniques as needed
-  - Name: "Another Technique"
-    Description: "Description of another technique"
-    Steps:
-      - "Step 1 description"
-      - "Step 2 description"
-    Prerequisites: "Requirements for this technique"
-    References:
-      - "https://another-documentation-url"
-
-# =============================================================================
-# AVAILABLE TAGS REFERENCE
-# =============================================================================
-
-# Operating System Tags:
-# - Windows: Tools specific to Windows operating system
-
-# Interface Type Tags:
-# - CLI: Command-line interface tools
-# - GUI: Graphical user interface tools
-
-# Function Tags:
-# - Command Line: Command-line execution tools
-# - Scripting: Scripting and automation tools
-# - System Tools: System administration tools
-# - Registry: Registry manipulation tools
-# - System Configuration: System configuration tools
-
-# Categories:
-# - command-line: Command-line tools and utilities
-# - system-tools: System administration and configuration tools
-
-# =============================================================================
-# EXAMPLE COMPLETED TOOL
-# =============================================================================
-
-# Name: "Command Prompt (cmd.exe)"
-# Description: "Windows command-line interpreter for executing commands and batch files"
-# Author: "ClickFix Wiki"
-# Created: "2024-01-15"
-# Category: "command-line"
-# Tags: ["Windows", "CLI", "Command Line", "System Tools"]
-# 
-# Techniques:
-#   - Name: "Basic Command Execution"
-#     Description: "Execute commands directly in Command Prompt"
-#     Steps:
-#       - "Open Command Prompt (Press Win+R, type 'cmd', press Enter)"
-#       - "Type the command: dir"
-#       - "Press Enter to execute"
-#     Prerequisites: "Windows operating system"
-#     References:
-#       - "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd" 
+      - "https://docs.microsoft.com/en-us/example-link"
+      - "https://manpages.ubuntu.com/example-link"
+      - "https://developer.apple.com/example-link" 

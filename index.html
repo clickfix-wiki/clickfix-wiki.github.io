@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickFix Wiki - Windows System Tools Documentation</title>
+    <title>ClickFix Wiki - Code execution by social engineering instructions</title>
     <style>
         * {
             margin: 0;
@@ -275,7 +275,7 @@
     <div class="header">
         <div class="container">
             <h1>ClickFix Wiki</h1>
-            <p>Windows System Tools and Command-Line Utilities Documentation</p>
+            <p>Code execution by social engineering instructions</p>
         </div>
     </div>
 
@@ -442,9 +442,9 @@
 
         // Tag categories for tools
         const tagCategories = {
-            os: ['Windows'],
+            os: ['Windows', 'Linux', 'macOS'],
             interface: ['CLI', 'GUI'],
-            function: ['Command Line', 'Scripting', 'System Tools', 'Registry', 'System Configuration']
+            function: ['Command Line', 'Scripting', 'System Tools', 'Registry', 'System Configuration', 'Networking', 'Security', 'File Management', 'Process Management', 'Network Tools', 'Security Tools', 'Development Tools']
         };
 
         // Selected filters
@@ -526,84 +526,11 @@
                     }
                 }
                 
-                if (tools.length === 0) {
-                    console.warn('No YAML files loaded, using fallback data');
-                    return getFallbackTools();
-                }
-                
                 return tools;
             } catch (error) {
                 console.error('Error loading tools:', error);
-                // Fallback to hardcoded data if YAML loading fails
-                return getFallbackTools();
+                return [];
             }
-        }
-
-        // Fallback tools if YAML loading fails
-        function getFallbackTools() {
-            return [
-                {
-                    id: 'cmd',
-                    Name: 'Command Prompt (cmd.exe)',
-                    Description: 'Windows command-line interpreter for executing commands and batch files',
-                    Category: 'command-line',
-                    Tags: ['Windows', 'CLI', 'Command Line', 'System Tools'],
-                    Techniques: [
-                        {
-                            Name: 'Basic Command Execution',
-                            Description: 'Execute commands directly in Command Prompt',
-                            Steps: [
-                                'Open Command Prompt (Press Win+R, type "cmd", press Enter)',
-                                'Type the command: dir',
-                                'Press Enter to execute'
-                            ],
-                            Prerequisites: 'Windows operating system',
-                            References: ['https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd']
-                        }
-                    ]
-                },
-                {
-                    id: 'powershell',
-                    Name: 'PowerShell (powershell.exe)',
-                    Description: 'Advanced command-line shell and scripting language for Windows',
-                    Category: 'command-line',
-                    Tags: ['Windows', 'CLI', 'Scripting', 'System Administration'],
-                    Techniques: [
-                        {
-                            Name: 'Basic PowerShell Commands',
-                            Description: 'Execute basic PowerShell commands',
-                            Steps: [
-                                'Open PowerShell (Press Win+X, select "Windows PowerShell")',
-                                'Type: Get-Process',
-                                'Press Enter to see running processes'
-                            ],
-                            Prerequisites: 'Windows operating system',
-                            References: ['https://docs.microsoft.com/en-us/powershell/scripting/overview']
-                        }
-                    ]
-                },
-                {
-                    id: 'regedit',
-                    Name: 'Registry Editor (regedit.exe)',
-                    Description: 'Windows registry editor for viewing and modifying system registry',
-                    Category: 'system-tools',
-                    Tags: ['Windows', 'GUI', 'Registry', 'System Configuration'],
-                    Techniques: [
-                        {
-                            Name: 'Basic Registry Navigation',
-                            Description: 'Navigate through registry keys and values',
-                            Steps: [
-                                'Open Registry Editor (Press Win+R, type "regedit", press Enter)',
-                                'Expand HKEY_LOCAL_MACHINE',
-                                'Navigate to SOFTWARE\\Microsoft\\Windows\\CurrentVersion',
-                                'View values in the right panel'
-                            ],
-                            Prerequisites: 'Windows operating system',
-                            References: ['https://docs.microsoft.com/en-us/windows/win32/sysinfo/registry']
-                        }
-                    ]
-                }
-            ];
         }
 
         // Populate filter tags
