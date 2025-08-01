@@ -13,6 +13,9 @@ collections:
   entries:
     output: true
     permalink: /:collection/:name/
+  pages:
+    output: true
+    permalink: /:name/
 
 # Defaults
 defaults:
@@ -21,6 +24,11 @@ defaults:
       type: "entries"
     values:
       layout: "entry"
+  - scope:
+      path: "_pages"
+      type: "pages"
+    values:
+      layout: "page"
 
 # Plugins
 plugins:
