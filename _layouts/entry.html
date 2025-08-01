@@ -1,0 +1,76 @@
+---
+layout: default
+---
+<div class="container-lg px-3 my-5 markdown-body">
+    <div class="entry-header">
+        <h1>{{ page.Name }}</h1>
+        <p class="description">{{ page.Description }}</p>
+        <div class="meta">
+            <span class="author">By {{ page.Author }}</span>
+            <span class="date">{{ page.Created }}</span>
+        </div>
+        {% if page.Category %}
+        <div class="category">
+            <span class="category-tag">{{ page.Category }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if page.Tags %}
+    <div class="tags-section">
+        <h3>Tags</h3>
+        <div class="tags">
+            {% for tag in page.Tags %}
+            <span class="technique-tag" data-os="{{ tag }}">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if page.Techniques %}
+    <div class="techniques-section">
+        <h2>Techniques</h2>
+        {% for technique in page.Techniques %}
+        <div class="technique-group {% cycle 'odd', 'even' %}">
+            <div class="technique-header">
+                <h3>{{ technique.Name }}</h3>
+                <p class="technique-description">{{ technique.Description }}</p>
+            </div>
+            
+            {% if technique.Steps %}
+            <div class="technique-steps">
+                <h4>Steps:</h4>
+                <ol class="steps-list">
+                    {% for step in technique.Steps %}
+                    <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endif %}
+            
+            {% if technique.Prerequisites %}
+            <div class="technique-prerequisites">
+                <h4>Prerequisites:</h4>
+                <p>{{ technique.Prerequisites }}</p>
+            </div>
+            {% endif %}
+            
+            {% if technique.References %}
+            <div class="technique-references">
+                <h4>References:</h4>
+                <ul class="references-list">
+                    {% for reference in technique.References %}
+                    <li><a href="{{ reference }}" target="_blank">{{ reference }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="navigation">
+        <a href="/" class="btn btn-outline">← Back to Home</a>
+    </div>
+</div> 

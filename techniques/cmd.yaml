@@ -1,0 +1,59 @@
+Name: "Command Prompt (cmd.exe)"
+Description: "Windows command-line interpreter for executing commands and batch files"
+Author: "ClickFix Wiki"
+Created: "2024-01-15"
+Category: "command-line"
+Tags: ["Windows", "CLI", "Command Line", "System Tools"]
+
+Techniques:
+  - Name: "Basic Command Execution"
+    Description: "Execute commands directly in Command Prompt"
+    Steps:
+      - "Open Command Prompt (Press Win+R, type 'cmd', press Enter)"
+      - "Type the command: dir"
+      - "Press Enter to execute"
+    Prerequisites: "Windows operating system"
+    References:
+      - "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd"
+    
+  - Name: "Batch File Execution"
+    Description: "Run commands from a batch file"
+    Steps:
+      - "Create a text file with .bat extension"
+      - "Add commands to the file (e.g., 'echo Hello World')"
+      - "Double-click the .bat file or run from cmd"
+    Prerequisites: "Text editor, basic command knowledge"
+    References:
+      - "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/batch"
+    
+  - Name: "Command with Parameters"
+    Description: "Execute commands with various parameters"
+    Steps:
+      - "Open Command Prompt"
+      - "Type: copy /? (to see help)"
+      - "Use parameters: copy source.txt destination.txt"
+    Prerequisites: "Understanding of command syntax"
+    References:
+      - "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key"
+    
+  - Name: "System Information Commands"
+    Description: "Get system information using cmd commands"
+    Steps:
+      - "Open Command Prompt as Administrator"
+      - "Type: systeminfo"
+      - "Press Enter to view detailed system information"
+    Prerequisites: "Administrator privileges"
+    References:
+      - "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/systeminfo"
+    
+  - Name: "Network Commands"
+    Description: "Use network-related commands"
+    Steps:
+      - "Open Command Prompt"
+      - "Type: ipconfig"
+      - "Press Enter to see network configuration"
+      - "Type: ping google.com"
+      - "Press Enter to test connectivity"
+    Prerequisites: "Network connection"
+    References:
+      - "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig" 
