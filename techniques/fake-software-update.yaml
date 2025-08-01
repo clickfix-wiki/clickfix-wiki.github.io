@@ -1,0 +1,34 @@
+id: fake-software-update
+title: Fake Software Update Popup
+description: Malicious websites or ads display fake update notifications to trick users into downloading malware.
+severity: low
+category: web-scam
+tags:
+  - Windows
+  - Mac
+  - Linux
+  - GUI
+  - Web Browser
+  - Download
+  - Run Command
+  - UAC
+iocfs:
+  - Popups that appear to be from legitimate software
+  - Warnings about "outdated" software
+  - Download prompts from unexpected sources
+  - Suspicious download URLs
+  - Requests for admin privileges
+  - Popups that can't be closed easily
+  - Claims about "critical security updates"
+  - Browser warnings about "system optimization"
+examples:
+  - "Your Flash Player needs updating"
+  - "Java update required for security"
+  - "System optimization recommended"
+  - "Critical Windows update available"
+prevention:
+  - Never download software from popup ads
+  - Only download updates from official websites
+  - Use ad blockers to prevent malicious popups
+  - Keep software updated through official channels
+  - Be suspicious of unsolicited update prompts 

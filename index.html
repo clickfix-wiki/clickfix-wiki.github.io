@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickFix Techniques - Social Engineering Pretenses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .search-section {
+            background: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+        }
+
+        .techniques-list {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .technique-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f1f3f4;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.2s;
+        }
+
+        .technique-item:last-child {
+            border-bottom: none;
+        }
+
+        .technique-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .technique-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            flex: 1;
+            margin-right: 1rem;
+        }
+
+        .technique-meta {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .severity {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .severity.low { background: #d4edda; color: #155724; }
+        .severity.medium { background: #fff3cd; color: #856404; }
+        .severity.high { background: #f8d7da; color: #721c24; }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .stats {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats span {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .filter-groups {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #666;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .filter-tag {
+            padding: 0.15rem 0.5rem;
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+            line-height: 1.2;
+        }
+
+        .filter-tag:hover {
+            background: #e9ecef;
+        }
+
+        .filter-tag.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .filter-tag.selected {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .clear-filters {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .clear-filters:hover {
+            background: #c82333;
+        }
+
+        .technique-tags {
+            margin-top: 0.5rem;
+        }
+
+        .technique-tag {
+            display: inline-block;
+            padding: 0.1rem 0.4rem;
+            background: #e9ecef;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            margin: 0.05rem;
+            color: #495057;
+            line-height: 1.2;
+        }
+
+        .techniques-list .technique-tag {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>ClickFix Techniques</h1>
+            <p>Social Engineering Pretenses and Indicators of ClickFix (IoCF)</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-section">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search techniques, descriptions, or IoCFs...">
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-title">Filter by Tags</div>
+            
+            <div class="filter-groups">
+                <div class="filter-group">
+                    <div class="filter-group-title">Operating System</div>
+                    <div class="filter-tags" id="osTags">
+                        <!-- OS tags will be populated here -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-title">Capabilities</div>
+                    <div class="filter-tags" id="capabilityTags">
+                        <!-- Capability tags will be populated here -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-title">Other</div>
+                    <div class="filter-tags" id="otherTags">
+                        <!-- Other tags will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="clear-filters" id="clearFilters">Clear All Filters</button>
+        </div>
+
+        <div class="stats">
+            <span id="totalTechniques">0</span> techniques documented • 
+            <span id="visibleTechniques">0</span> currently visible
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading techniques...</p>
+        </div>
+
+        <div class="techniques-list" id="techniquesGrid">
+            <!-- Techniques will be loaded here -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>No techniques found</h3>
+            <p>Try adjusting your search terms</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Documenting social engineering techniques to raise awareness and improve security</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple YAML parser
+        function parseYAML(yamlText) {
+            const lines = yamlText.split('\n');
+            const result = {};
+            let currentKey = null;
+            let currentArray = null;
+            let indentLevel = 0;
+
+            for (let line of lines) {
+                line = line.trim();
+                if (!line || line.startsWith('#')) continue;
+
+                // Check if this is a key-value pair
+                if (line.includes(':') && !line.startsWith('-')) {
+                    const colonIndex = line.indexOf(':');
+                    const key = line.substring(0, colonIndex).trim();
+                    const value = line.substring(colonIndex + 1).trim();
+                    
+                    if (value === '') {
+                        // This is a key with no value (likely an array or object)
+                        currentKey = key;
+                        currentArray = null;
+                        result[key] = [];
+                    } else {
+                        // This is a simple key-value pair
+                        result[key] = value;
+                        currentKey = null;
+                        currentArray = null;
+                    }
+                } else if (line.startsWith('-')) {
+                    // This is an array item
+                    const item = line.substring(1).trim();
+                    if (currentArray) {
+                        currentArray.push(item);
+                    } else if (currentKey) {
+                        result[currentKey].push(item);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        // Tag categories
+        const tagCategories = {
+            os: ['Windows', 'Mac', 'Linux'],
+            capabilities: ['GUI', 'CLI', 'Run Command', 'Open File Explorer', 'Clear Mark of The Web', 'UAC', 'Remote Access', 'Download', 'Popup', 'Payment', 'Personal Information', 'Document Request', 'Fake Alert'],
+            other: ['Email', 'Web Browser', 'File Attachment', 'Phone Call']
+        };
+
+        // Selected filters
+        let selectedFilters = {
+            os: [],
+            capabilities: [],
+            other: []
+        };
+
+        // Load techniques from YAML files dynamically
+        async function loadTechniques() {
+            const techniques = [];
+
+            try {
+                // Try to load the index file first
+                let techniqueFiles = [];
+                
+                try {
+                    const indexResponse = await fetch('techniques/index.txt');
+                    if (indexResponse.ok) {
+                        const indexText = await indexResponse.text();
+                        techniqueFiles = indexText.trim().split('\n').map(filename => 
+                            `techniques/${filename.trim()}`
+                        ).filter(filename => filename.endsWith('.yaml'));
+                        console.log(`Loaded ${techniqueFiles.length} files from index.txt`);
+                    }
+                } catch (indexError) {
+                    console.warn('Could not load index.txt:', indexError);
+                }
+                
+                // If we couldn't load the index, use a fallback approach
+                if (techniqueFiles.length === 0) {
+                    console.log('No index file found, using fallback approach');
+                    // Try common YAML files that might exist
+                    const commonFiles = [
+                        'techniques/fake-support-call.yaml',
+                        'techniques/fake-email-attachment.yaml',
+                        'techniques/fake-software-update.yaml',
+                        'techniques/fake-antivirus-scan.yaml',
+                        'techniques/fake-prize-notification.yaml',
+                        'techniques/fake-job-offer.yaml'
+                    ];
+                    
+                    // Test which files exist by trying to fetch them
+                    for (const file of commonFiles) {
+                        try {
+                            const testResponse = await fetch(file, { method: 'HEAD' });
+                            if (testResponse.ok) {
+                                techniqueFiles.push(file);
+                            }
+                        } catch (e) {
+                            // File doesn't exist or can't be accessed
+                        }
+                    }
+                }
+                
+                console.log(`Found ${techniqueFiles.length} YAML files to load`);
+                
+                // Load all found YAML files
+                for (const file of techniqueFiles) {
+                    try {
+                        const response = await fetch(file, {
+                            method: 'GET',
+                            mode: 'cors',
+                            headers: {
+                                'Accept': 'text/plain'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            const yamlText = await response.text();
+                            const technique = parseYAML(yamlText);
+                            // Add the ID from the filename
+                            technique.id = file.replace('techniques/', '').replace('.yaml', '');
+                            techniques.push(technique);
+                            console.log(`Successfully loaded ${file}`);
+                        } else {
+                            console.warn(`Failed to load ${file}: ${response.status} ${response.statusText}`);
+                        }
+                    } catch (fileError) {
+                        console.warn(`Error loading ${file}:`, fileError);
+                    }
+                }
+                
+                if (techniques.length === 0) {
+                    console.warn('No YAML files loaded, using fallback data');
+                    return getFallbackTechniques();
+                }
+                
+                return techniques;
+            } catch (error) {
+                console.error('Error loading techniques:', error);
+                // Fallback to hardcoded data if YAML loading fails
+                return getFallbackTechniques();
+            }
+        }
+
+        // Fallback techniques if YAML loading fails
+        function getFallbackTechniques() {
+            return [
+                {
+                    id: 'fake-support-call',
+                    title: 'Fake Technical Support Call',
+                    description: 'Scammer pretends to be from Microsoft, Apple, or other tech companies offering "urgent" technical support.',
+                    iocfs: [
+                        'Unsolicited phone calls claiming to be from tech companies',
+                        'Urgency and pressure tactics',
+                        'Requests to install remote access software',
+                        'Claims about "viruses" or "security threats"',
+                        'Asking for payment via gift cards or cryptocurrency'
+                    ],
+                    severity: 'medium',
+                    category: 'phone-scam',
+                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'CLI', 'Remote Access', 'Phone Call']
+                },
+                {
+                    id: 'fake-email-attachment',
+                    title: 'Fake Email with Malicious Attachment',
+                    description: 'Scammer sends emails with fake invoices, receipts, or documents containing malicious payloads.',
+                    iocfs: [
+                        'Unexpected email attachments from unknown senders',
+                        'Urgent subject lines about payments or invoices',
+                        'File extensions like .exe, .bat, .ps1 in attachments',
+                        'Poor grammar or spelling in emails',
+                        'Suspicious sender addresses'
+                    ],
+                    severity: 'low',
+                    category: 'email-scam',
+                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'CLI', 'Email', 'File Attachment', 'Run Command']
+                },
+                {
+                    id: 'fake-software-update',
+                    title: 'Fake Software Update Popup',
+                    description: 'Malicious websites or ads display fake update notifications to trick users into downloading malware.',
+                    iocfs: [
+                        'Unexpected update popups from unknown sources',
+                        'Claims about "critical" security updates',
+                        'Fake progress bars showing "scanning"',
+                        'Demands for immediate action'
+                    ],
+                    severity: 'low',
+                    category: 'web-scam',
+                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Web Browser', 'Popup', 'Download']
+                },
+                {
+                    id: 'fake-antivirus-scan',
+                    title: 'Fake Antivirus Scan Results',
+                    description: 'Scammers create fake antivirus interfaces showing false threats to trick users into paying for "removal".',
+                    iocfs: [
+                        'Unexpected antivirus scan results',
+                        'Popups claiming to find "threats"',
+                        'Requests for payment to remove "viruses"',
+                        'Fake security alerts'
+                    ],
+                    severity: 'medium',
+                    category: 'web-scam',
+                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Web Browser', 'Popup', 'Payment', 'Fake Alert']
+                },
+                {
+                    id: 'fake-prize-notification',
+                    title: 'Fake Prize or Lottery Notification',
+                    description: 'Scammers claim the victim has won a prize or lottery and need to provide personal information or pay fees.',
+                    iocfs: [
+                        'Unsolicited prize notifications',
+                        'Requests for personal information',
+                        'Demands for payment to claim prizes',
+                        'Urgency and pressure tactics'
+                    ],
+                    severity: 'low',
+                    category: 'email-scam',
+                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Email', 'Web Browser', 'Personal Information', 'Payment']
+                },
+                {
+                    id: 'fake-job-offer',
+                    title: 'Fake Job Offer Scam',
+                    description: 'Scammers pose as recruiters offering fake job opportunities to steal personal information or money.',
+                    iocfs: [
+                        'Unsolicited job offers via email',
+                        'Requests for personal information',
+                        'Demands for payment for "background checks"',
+                        'Poor grammar or spelling'
+                    ],
+                    severity: 'medium',
+                    category: 'email-scam',
+                    tags: ['Windows', 'Mac', 'Linux', 'GUI', 'Email', 'Web Browser', 'Personal Information', 'Payment', 'Document Request']
+                }
+            ];
+        }
+
+        // Populate filter tags
+        function populateFilterTags() {
+            // OS tags
+            const osTagsContainer = document.getElementById('osTags');
+            tagCategories.os.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'filter-tag';
+                tagElement.textContent = tag;
+                tagElement.onclick = () => toggleFilter('os', tag, tagElement);
+                osTagsContainer.appendChild(tagElement);
+            });
+
+            // Capability tags
+            const capabilityTagsContainer = document.getElementById('capabilityTags');
+            tagCategories.capabilities.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'filter-tag';
+                tagElement.textContent = tag;
+                tagElement.onclick = () => toggleFilter('capabilities', tag, tagElement);
+                capabilityTagsContainer.appendChild(tagElement);
+            });
+
+            // Other tags
+            const otherTagsContainer = document.getElementById('otherTags');
+            tagCategories.other.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'filter-tag';
+                tagElement.textContent = tag;
+                tagElement.onclick = () => toggleFilter('other', tag, tagElement);
+                otherTagsContainer.appendChild(tagElement);
+            });
+        }
+
+        // Toggle filter selection
+        function toggleFilter(category, tag, element) {
+            const index = selectedFilters[category].indexOf(tag);
+            if (index > -1) {
+                selectedFilters[category].splice(index, 1);
+                element.classList.remove('selected');
+            } else {
+                selectedFilters[category].push(tag);
+                element.classList.add('selected');
+            }
+            applyFilters();
+        }
+
+        // Apply all filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchBox').value;
+            filterTechniques(searchTerm);
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            selectedFilters = {
+                os: [],
+                capabilities: [],
+                other: []
+            };
+            
+            // Remove selected class from all filter tags
+            document.querySelectorAll('.filter-tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+            
+            applyFilters();
+        }
+
+        // Render techniques
+        function renderTechniques(techniquesToRender) {
+            const grid = document.getElementById('techniquesGrid');
+            const noResults = document.getElementById('noResults');
+            const loading = document.getElementById('loading');
+            
+            loading.style.display = 'none';
+            
+            if (techniquesToRender.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                grid.innerHTML = techniquesToRender.map(technique => `
+                    <a href="pages/${technique.id}.html" class="technique-item" data-id="${technique.id}">
+                        <div class="technique-title">${technique.title}</div>
+                        <div class="technique-meta">
+                            <span class="severity ${technique.severity}">${technique.severity.toUpperCase()}</span>
+                            ${technique.tags ? technique.tags.map(tag => `<span class="technique-tag">${tag}</span>`).join('') : ''}
+                        </div>
+                    </a>
+                `).join('');
+            }
+
+            // Update stats
+            document.getElementById('totalTechniques').textContent = window.allTechniques ? window.allTechniques.length : 0;
+            document.getElementById('visibleTechniques').textContent = techniquesToRender.length;
+        }
+
+        // Search and filter functionality
+        function filterTechniques(searchTerm) {
+            if (!window.allTechniques) return;
+            
+            let filtered = window.allTechniques;
+
+            // Apply search filter
+            if (searchTerm) {
+                const searchLower = searchTerm.toLowerCase();
+                filtered = filtered.filter(technique => (
+                    technique.title.toLowerCase().includes(searchLower) ||
+                    technique.description.toLowerCase().includes(searchLower) ||
+                    technique.iocfs.some(iocf => iocf.toLowerCase().includes(searchLower))
+                ));
+            }
+
+            // Apply tag filters
+            const allSelectedTags = [
+                ...selectedFilters.os,
+                ...selectedFilters.capabilities,
+                ...selectedFilters.other
+            ];
+
+            if (allSelectedTags.length > 0) {
+                filtered = filtered.filter(technique => {
+                    if (!technique.tags) return false;
+                    return allSelectedTags.every(selectedTag => 
+                        technique.tags.includes(selectedTag)
+                    );
+                });
+            }
+
+            renderTechniques(filtered);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            const techniques = await loadTechniques();
+            window.allTechniques = techniques;
+            
+            // Populate filter tags
+            populateFilterTags();
+            
+            // Set up clear filters button
+            document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+            
+            renderTechniques(techniques);
+
+            // Search functionality
+            const searchBox = document.getElementById('searchBox');
+            searchBox.addEventListener('input', (e) => {
+                filterTechniques(e.target.value);
+            });
+        });
+    </script>
+</body>
+</html> 
