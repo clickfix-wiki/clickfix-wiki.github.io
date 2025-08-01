@@ -17,19 +17,17 @@ ClickFix refers to social engineering techniques where scammers trick victims in
 ## Structure
 
 ```
-cfbins2/
-├── index.html                    # Main website with simplified cards
-├── techniques/                   # YAML files for each technique
-│   ├── fake-support-call.yaml
-│   ├── fake-email-attachment.yaml
-│   ├── fake-software-update.yaml
-│   ├── fake-antivirus-scan.yaml
-│   ├── fake-prize-notification.yaml
-│   └── fake-job-offer.yaml
-├── technique-template.html       # Template for individual pages
+xclickfix-wiki.github.io/
+├── .github/workflows/deploy.yml # GitHub Actions for deployment
+├── index.html                   # Main website with simplified cards
+├── techniques/                  # YAML files for each technique
+│   ├── example.yaml             # all techniques as yaml files
+├── technique-template.html      # Template for individual pages
+├── technique-template.yaml      # Template for new technique files
 ├── generate-pages.js            # Script to generate individual pages
 ├── add-technique.js             # Helper script for adding new techniques
-├── .github/workflows/deploy.yml # GitHub Actions for deployment
+├── clean.js                     # Script to clean generated files
+├── yaml-quick-reference.md      # Quick reference for YAML format
 ├── package.json                 # Project metadata
 ├── .gitignore                   # Git ignore rules
 └── README.md                    # Project documentation
@@ -82,13 +80,15 @@ prevention:
   - ...
 ```
 
+For a quick reference of the YAML format, see `yaml-quick-reference.md`.
+
 ## Deployment
 
 This website is designed to work with GitHub Pages. Simply:
 
 1. Push this repository to GitHub
 2. Enable GitHub Pages in repository settings
-3. The site will be available at `https://username.github.io/repository-name`
+3. The site will be available at `https://clickfix-wiki.github.io`
 
 ## Contributing
 
@@ -96,7 +96,7 @@ To add new techniques:
 
 1. Run `node add-technique.js` to create a new technique interactively
 2. Or manually create a new YAML file in the `techniques/` directory
-3. Follow the established format
+3. Follow the established format (see `yaml-quick-reference.md` for details)
 4. Submit a pull request
 
 The HTML pages will be generated automatically during the GitHub Actions build process.
@@ -107,6 +107,7 @@ The HTML pages will be generated automatically during the GitHub Actions build p
 - `npm run add-technique` - Add a new technique interactively
 - `npm run generate-pages` - Generate individual technique pages locally
 - `npm run clean` - Remove generated files
+- `npm run build` - Generate pages (alias for generate-pages)
 
 ## Categories
 
