@@ -30,4 +30,8 @@ Thumbs.db
 # Generated files
 *.tmp
 *.temp
-techniques/index.txt 
+techniques/index.txt
+
+# Keep _site directory for GitHub Pages deployment
+!_site/
+!_site/** 

@@ -113,6 +113,13 @@ class ClickFixWikiBuilder:
         self.output_dir.mkdir(exist_ok=True)
         (self.output_dir / "pages").mkdir(exist_ok=True)
         
+        # Ensure clean build
+        if self.output_dir.exists():
+            # Remove old files but keep directory structure
+            for file_path in self.output_dir.rglob("*"):
+                if file_path.is_file():
+                    file_path.unlink()
+        
         # Load all entries
         entries = self.get_all_entries()
         print(f"Loaded {len(entries)} entries")
@@ -143,6 +150,9 @@ class ClickFixWikiBuilder:
         # Copy static assets
         self.copy_static_assets()
         
+        # Verify build
+        self.verify_build()
+        
         print("Build complete!")
         return len(entries)
     
@@ -167,6 +177,24 @@ class ClickFixWikiBuilder:
                         shutil.rmtree(dst_path)
                     shutil.copytree(src_path, dst_path)
                     print(f"Copied: {src}/")
+    
+    def verify_build(self):
+        """Verify that the build was successful"""
+        required_files = [
+            self.output_dir / "index.html",
+            self.output_dir / "styles.css",
+            self.output_dir / "script.js"
+        ]
+        
+        missing_files = []
+        for file_path in required_files:
+            if not file_path.exists():
+                missing_files.append(str(file_path))
+        
+        if missing_files:
+            print(f"Warning: Missing required files: {missing_files}")
+        else:
+            print("✅ Build verification passed - all required files present")
 
 def main():
     """Main build function"""
