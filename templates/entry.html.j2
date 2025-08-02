@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entry.name }} - {{ config.title }}</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>{{ config.title }}</h1>
+            <p>{{ config.tagline }}</p>
+            <nav class="site-navigation">
+                {{ navigation_html | safe }}
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="entry-content">
+            <div class="entry-header">
+                <h1 class="entry-title">{{ entry.name }}</h1>
+                <div class="entry-tags">
+                    {% if entry.platform %}
+                    <span class="tool-tag platform-tag" data-platform="{{ entry.platform | title }}">
+                        {% if entry.platform | title == 'Windows' %}
+                        <i class="fab fa-windows" style="color: #0078d4;"></i>
+                        {% elif entry.platform | title == 'Mac' %}
+                        <i class="fab fa-apple" style="color: #000000;"></i>
+                        {% elif entry.platform | title == 'Linux' %}
+                        <i class="fab fa-linux" style="color: #f47421;"></i>
+                        {% endif %}
+                        {{ entry.platform | title }}
+                    </span>
+                    {% endif %}
+                    {% if entry.presentation %}
+                    <span class="tool-tag presentation-tag" data-presentation="{{ entry.presentation | upper }}">
+                        {% if entry.presentation | lower == 'gui' %}
+                        <i class="fas fa-window-maximize" style="color: #0c5460;"></i>
+                        {% elif entry.presentation | lower == 'cli' %}
+                        <i class="fas fa-terminal" style="color: #0c5460;"></i>
+                        {% endif %}
+                        {{ entry.presentation | upper }}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if entry.platform | title == 'Windows' and entry.capabilities and 'Native' in entry.capabilities %}
+            <div class="windows-run-command">
+                <p>On Windows, this can be ran by pressing <strong><i class="fab fa-windows" style="color: #0078d4;"></i> Win+R</strong> on your keyboard and entering <code>{{ entry.name }}</code></p>
+            </div>
+            {% endif %}
+
+            <div class="lures-section">
+                <div class="lures-search">
+                    <input type="text" id="luresSearch" placeholder="Search lures, steps, or content..." class="search-box">
+                </div>
+
+                <div class="lures-list">
+                    {{ lures_html | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>{{ config.footer }}</p>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality for lures
+        document.getElementById('luresSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const lureItems = document.querySelectorAll('.lure-item');
+            
+            lureItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Contributor tooltip functionality
+        function toggleContributorContacts(lureIndex) {
+            const tooltip = document.getElementById(`contributor-contacts-${lureIndex}`);
+            if (tooltip) {
+                // Hide all other tooltips first
+                document.querySelectorAll('.contributor-contacts').forEach(t => {
+                    t.classList.remove('show');
+                });
+                
+                // Toggle current tooltip
+                tooltip.classList.toggle('show');
+            }
+        }
+        
+        // Close tooltips when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.contributor-name') && !event.target.closest('.contributor-contacts')) {
+                document.querySelectorAll('.contributor-contacts').forEach(t => {
+                    t.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

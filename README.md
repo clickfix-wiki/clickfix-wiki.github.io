@@ -1,139 +1,174 @@
 # ClickFix Wiki
 
-A comprehensive documentation wiki for Windows, Linux, and macOS system tools and command-line utilities.
+A comprehensive database of social engineering pretenses and Indicators of ClickFix (IoCF) techniques, built as a static site with Python backend.
 
-## Overview
+## 🚀 Quick Start
 
-ClickFix Wiki provides detailed documentation for system administration tools, command-line utilities, and system configuration tools across multiple operating systems. This wiki serves as a reference for IT professionals, system administrators, and developers who need to understand and use various system tools effectively.
+### For Developers
 
-## Features
+1. **Add new techniques**: Simply create a new `.yaml` file in the `techniques/` directory
+2. **Build the site**: Run `python build.py`
+3. **View locally**: Open `_site/index.html` in your browser
 
-- **Cross-Platform Support**: Documentation for Windows, Linux, and macOS tools
-- **Comprehensive Tool Coverage**: Command-line tools, GUI applications, system utilities
-- **Detailed Techniques**: Step-by-step instructions for each tool
-- **Search and Filter**: Find tools by operating system, interface type, or function
-- **Reference Links**: Direct links to official documentation
-- **Responsive Design**: Works on desktop and mobile devices
+### For Contributors
 
-## Project Structure
+1. **Fork the repository**
+2. **Add your YAML files** to the `techniques/` directory
+3. **Push to your fork** - GitHub Actions will automatically build and deploy
+
+## 📁 Project Structure
 
 ```
 clickfix-wiki.github.io/
-├── index.html                 # Main landing page
-├── pages/                     # Generated HTML pages for individual tools
-├── techniques/                # YAML files defining tools and techniques
-│   ├── cmd.yaml              # Command Prompt documentation
-│   ├── powershell.yaml       # PowerShell documentation
-│   ├── regedit.yaml          # Registry Editor documentation
-│   └── index.txt             # Auto-generated index of YAML files
-├── generate-pages.js          # Build script to generate HTML pages
-├── technique-template.html    # HTML template for individual tool pages
-├── technique-template.yaml    # YAML template for creating new tools
-├── clean.js                  # Cleanup script
-├── yaml-quick-reference.md   # YAML format reference guide
-├── package.json              # Project metadata and scripts
-└── README.md                 # This file
+├── techniques/           # YAML data files (add new ones here!)
+│   ├── cmd.yaml
+│   ├── powershell.yaml
+│   ├── regedit.yaml
+│   ├── example.yaml
+│   └── dxdiag.yaml
+├── pages/               # Markdown pages (add new ones here!)
+│   ├── about.md
+│   ├── contact.md
+│   └── your-page.md
+├── build.py             # Python build script
+├── dev.py               # Development helper
+├── script.js            # Frontend JavaScript
+├── assets/styles.css    # Frontend styles
+├── requirements.txt     # Python dependencies
+├── yaml_specification.md # YAML format specification
+├── STATIC_PAGES_GUIDE.md # Static pages guide
+├── _site/              # Generated static site (auto-created)
+└── .github/workflows/   # GitHub Actions for auto-deployment
 ```
 
-## Available Scripts
+## 📝 Adding New Techniques
 
-- `npm run generate-pages` - Generate HTML pages from YAML files
-- `npm run clean` - Clean generated files
-- `npm run build` - Clean and regenerate all pages
-
-## YAML File Format
-
-Each tool is defined in a YAML file with the following structure:
+Create a new `.yaml` file in the `techniques/` directory with this structure:
 
 ```yaml
-Name: "Tool Name"
-Description: "Brief description of the tool and its purpose"
-Author: "ClickFix Wiki"
-Created: "2024-01-15"
-Category: "command-line"  # Options: command-line, gui, system-tools, networking, security
-Tags: ["Windows", "CLI", "System Tools"]  # Available tags: Windows, Linux, macOS, CLI, GUI, System Tools, Networking, Security, Scripting, System Administration, Registry, File Management, Process Management, Network Tools, Security Tools, Development Tools
-
-Techniques:
-  - Name: "Technique Name"
-    Description: "Description of this specific technique"
-    Steps:
-      - "Step 1: First action to take"
-      - "Step 2: Second action to take"
-      - "Step 3: Third action to take"
-    Prerequisites: "What is needed before starting (e.g., administrator privileges, specific software)"
-    References:
-      - "https://docs.microsoft.com/en-us/example-link"
-      - "https://manpages.ubuntu.com/example-link"
-      - "https://developer.apple.com/example-link"
+name: "Your Tool Name"
+added_at: "YYYY-MM-DD"
+platform: "windows|mac|linux"
+presentation: "gui|cli"
+lures:
+  - nickname: "Lure Name"
+    added_at: "YYYY-MM-DD"
+    capabilities:
+      - "UAC"
+      - "MOTW"
+      - "File Explorer"
+    contributor:
+      name: "Contributor Name"
+      handle: "optional_handle"
+      contacts:
+        linkedin: "optional"
+        twitter: "optional"
+        youtube: "optional"
+        email: "optional"
+    preamble: >
+      # Optional, Pure Markdown Syntax
+      "Context and pretext information"
+    steps:
+      - "Step 1: Do this"
+      - "Step 2: Do that"
+    epilogue: >
+      # Optional, also renders as Markdown
+    references:
+      - "https://example.com/reference"
+    mitigations:
+      - "Mitigation strategy A"
+      - "Mitigation strategy B"
 ```
 
-## Categories
+See `yaml_specification.md` for the complete specification.
 
-### Operating System
-- **Windows**: Tools specific to Windows operating system
-- **Linux**: Tools specific to Linux operating system
-- **macOS**: Tools specific to macOS operating system
+## 📄 Adding Static Pages
 
-### Interface Type
-- **CLI**: Command-line interface tools
-- **GUI**: Graphical user interface tools
+Create new Markdown pages in the `pages/` directory:
 
-### Function
-- **Command Line**: Command-line execution tools
-- **Scripting**: Scripting and automation tools
-- **System Tools**: System administration tools
-- **Registry**: Registry manipulation tools (Windows)
-- **System Configuration**: System configuration tools
-- **Networking**: Network administration and troubleshooting tools
-- **Security**: Security and access control tools
-- **File Management**: File system management tools
-- **Process Management**: Process monitoring and control tools
-- **Network Tools**: Network analysis and monitoring tools
-- **Security Tools**: Security analysis and protection tools
-- **Development Tools**: Software development utilities
+```markdown
+# Your Page Title
 
-## Current Tools
+## Introduction
 
-### Windows Tools
-- **Command Prompt (cmd.exe)** - Windows command-line interpreter
-- **PowerShell (powershell.exe)** - Advanced Windows scripting shell
-- **Registry Editor (regedit.exe)** - Windows registry management
+Your content here...
 
-### Cross-Platform Tools
-- **Bash Shell** - Unix/Linux command-line shell (Linux, macOS)
+## Section 1
 
-## Contributing
+More content with **bold** and *italic* text.
 
-To add a new tool:
+## Links
 
-1. Copy `technique-template.yaml` to create a new YAML file
-2. Fill in the tool details following the template structure
-3. Add appropriate tags for operating system, interface type, and function
-4. Document specific techniques with steps, prerequisites, and references
-5. Run `npm run generate-pages` to regenerate the HTML pages
+[Link to external site](https://example.com)
+[Internal link](pages/about.html)
+```
 
-### Guidelines
+Pages automatically:
+- ✅ Appear in site navigation
+- ✅ Get consistent styling
+- ✅ Support full Markdown features
+- ✅ Are cross-linked with other pages
 
-- Use clear, descriptive names for tools and techniques
-- Include step-by-step instructions that are easy to follow
-- Specify prerequisites clearly (e.g., administrator privileges, specific software)
-- Provide links to official documentation when available
-- Use appropriate tags to help users find tools by category
-- Test your YAML syntax before committing
+See `STATIC_PAGES_GUIDE.md` for complete documentation.
 
-## Security Notice
+## 🔧 Development
 
-This wiki documents legitimate system administration tools and techniques. All tools and techniques described are intended for educational purposes and legitimate system administration tasks. Users are responsible for ensuring they have proper authorization before using these tools on any system.
+### Local Development
 
-## Disclaimer
+1. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-This documentation is provided for educational and legitimate system administration purposes only. Users are responsible for complying with all applicable laws and regulations when using these tools. The authors are not responsible for any misuse of the information provided.
+2. Build and serve the site:
+   ```bash
+   # Just build
+   python build.py
+   
+   # Or use the development helper
+   python dev.py build     # Build only
+   python dev.py serve     # Serve locally
+   python dev.py watch     # Watch for changes
+   python dev.py dev       # Build, serve, and watch
+   ```
 
-## Deployment
+3. View the generated site in `_site/` directory or at `http://localhost:8000`
 
-This project is designed to be deployed on GitHub Pages. The site will be available at:
-`https://[username].github.io/clickfix-wiki.github.io/`
+### Automatic Deployment
 
-## License
+- Push to `main` branch → automatically builds and deploys to GitHub Pages
+- No manual steps required!
+- Site updates automatically when you add new YAML files
 
-This project is open source and available under the MIT License. 
+## 🎨 Features
+
+- **Static Site**: Fast, secure, and reliable
+- **Search & Filter**: Find tools by platform, interface, or capabilities
+- **Markdown Support**: Rich formatting in all content fields
+- **Contributor Profiles**: Track who contributed each lure
+- **Mitigation Strategies**: Built-in security recommendations
+- **Responsive Design**: Works on all devices
+- **Easy Editing**: Just modify YAML files
+- **Auto-Deployment**: GitHub Actions handles everything
+
+## 📚 Documentation
+
+The site documents Windows system tools for educational and legitimate system administration purposes. Each technique includes:
+
+- Step-by-step instructions
+- Prerequisites
+- References and documentation links
+- Categorization by OS, interface, and function
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Add your YAML files to `techniques/`
+3. Push to your fork
+4. Create a pull request
+
+The site will automatically rebuild and deploy when merged!
+
+## 📄 License
+
+MIT License - see LICENSE file for details. 

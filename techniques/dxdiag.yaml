@@ -1,0 +1,38 @@
+name: DxDiag.exe
+added_at: 2025-01-08
+platform: windows
+presentation: gui
+lures:
+  - nickname: "Fix Your Graphics Driver"
+    added_at: "2025-01-08"
+    capabilities:
+      - "UAC"
+      - "MOTW"
+    contributor:
+      name: "John Hammond"
+      # handle: "johnhammond"
+      contacts:
+        linkedin: "johnhammond"
+        twitter: "_johnhammond"
+        youtube: "@_JohnHammond"
+        github: "John Hammond"
+    preamble: >
+      Your graphics driver is out of date! 
+    steps:
+      - "Press **Win-R** on your keyboard"
+      - "Type **dxdiag** and press **Enter**"
+      - "Click **Save All Information**"
+      - "Press **Ctrl-L** to focus the address bar"
+      - "Press **Ctrl-V** to paste our configuration"
+      - "Press **Enter** to submit"
+    epilogue: >
+      Once you have completed the steps you can continue.
+    # references:
+    #   - "https://docs.microsoft.com/en-us/windows/win32/directx/dxdiag"
+    #   - "https://attack.mitre.org/techniques/T1059/"
+    #   - "https://attack.mitre.org/techniques/T1082/"
+    # mitigations:
+    #   - "Verify caller identity through official channels"
+    #   - "Never run commands from unsolicited technical support"
+    #   - "Use official support channels only"
+    #   - "Be suspicious of requests to run system tools" 
