@@ -28,7 +28,6 @@ Thumbs.db
 *.log
 
 # Generated files
-pages/
 *.tmp
 *.temp
 techniques/index.txt 
