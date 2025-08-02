@@ -1,0 +1,66 @@
+# ClickFix Wiki - Global Configuration
+# All string values support Markdown formatting
+
+# Site Identity
+title: "ClickFix Wiki"
+tagline: "Code execution by social engineering instructions"
+
+# Search Configuration
+search_prompt: "Search tools, lures, or capabilities..."
+
+
+
+# Display Options
+show_count: false  # Show "X tools documented • Y currently visible"
+
+# Footer
+footer: "Documenting Windows system tools for educational and legitimate system administration purposes"
+
+# Navigation
+nav_home: "Home"
+nav_about: "About"
+nav_contact: "Contact"
+
+# Platform Labels
+platform_windows: "Windows"
+platform_mac: "Mac"
+platform_linux: "Linux"
+
+# Interface Labels
+interface_gui: "GUI"
+interface_cli: "CLI"
+
+# Capability Labels
+capability_uac: "UAC"
+capability_motw: "MOTW"
+capability_file_explorer: "File Explorer"
+
+# Page Labels
+back_to_tools: "← Back to all tools"
+lures_section_title: "Social Engineering Lures"
+added_date_label: "Added"
+lure_count_singular: "lure"
+lure_count_plural: "lures"
+
+# Contributor Labels
+contributor_by: "By"
+contributor_handle_prefix: "@"
+
+# Content Section Labels
+steps_label: "Steps"
+references_label: "References"
+mitigations_label: "Mitigations"
+preamble_label: "Context"
+epilogue_label: "Additional Information"
+
+# Contact Information
+contact_email: "security@clickfix-wiki.org"
+contact_twitter: "@ClickFixWiki"
+contact_github: "github.com/clickfix-wiki"
+contact_linkedin: "linkedin.com/company/clickfix-wiki"
+
+# Educational Disclaimer
+disclaimer: >
+  This documentation is provided for **educational and legitimate security research purposes only**. 
+  Users are responsible for complying with all applicable laws and regulations. 
+  The authors are not responsible for any misuse of the information provided. 
