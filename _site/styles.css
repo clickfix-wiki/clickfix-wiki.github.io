@@ -670,7 +670,8 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: space-between;
+    width: 100%;
     transition: all 0.2s;
 }
 
@@ -683,6 +684,7 @@ body {
     opacity: 0;
     transition: opacity 0.2s;
     text-decoration: none;
+    margin-left: auto;
 }
 
 .lure-link:hover i {

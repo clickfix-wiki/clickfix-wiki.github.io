@@ -181,8 +181,8 @@ def generate_lures_html(entry: Dict[str, Any], config) -> str:
                 <div class="lure-header">
                     <h3 class="lure-name">
                         <a href="#{lure_anchor}" class="lure-link" onclick="copyLureLink(event, '{lure_anchor}')">
-                            <i class="fas fa-link"></i>
                             {lure.get('nickname', 'Unnamed Lure')}
+                            <i class="fas fa-link"></i>
                         </a>
                     </h3>
                     <div class="lure-capabilities">

@@ -263,15 +263,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const lureItems = document.querySelectorAll('.lure-item');
     lureItems.forEach(lureItem => {
         lureItem.addEventListener('click', (event) => {
-            // If clicking on the lure link/heading, copy the link and stop event propagation
-            if (event.target.closest('.lure-link')) {
-                event.stopPropagation();
-                const anchorId = lureItem.getAttribute('data-anchor');
-                if (anchorId) {
-                    copyLureLink(event, anchorId);
+            // Check if we're clicking on the lure link/heading
+            const lureLink = event.target.closest('.lure-link');
+            if (lureLink) {
+                // Check if the link is hovered (icon visible and underlined)
+                const linkIcon = lureLink.querySelector('i');
+                const isHovered = linkIcon && window.getComputedStyle(linkIcon).opacity !== '0';
+                const isUnderlined = window.getComputedStyle(lureLink).textDecoration.includes('underline');
+                
+                if (isHovered && isUnderlined) {
+                    // User is hovering over the heading, copy the link
+                    event.stopPropagation();
+                    const anchorId = lureItem.getAttribute('data-anchor');
+                    if (anchorId) {
+                        copyLureLink(event, anchorId);
+                    }
+                    return;
                 }
-                return;
             }
+            
             // Otherwise copy the lure content
             copyLureContent(lureItem);
         });
