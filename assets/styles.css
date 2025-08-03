@@ -606,6 +606,52 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     border-left: 4px solid #667eea;
     position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.lure-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    background-color: #f8f9fa;
+}
+
+.lure-item:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background-color: #e9ecef;
+}
+
+.lure-item.copied {
+    animation: copiedPulse 0.6s ease-out;
+}
+
+@keyframes copiedPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.copy-notification {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.copy-notification.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .lure-header {

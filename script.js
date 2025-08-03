@@ -106,6 +106,110 @@ function filterTools(searchTerm) {
     }
 }
 
+// Copy lure content to clipboard
+function copyLureContent(lureItem) {
+    // Extract lure data from data attributes
+    const lureData = {
+        nickname: lureItem.getAttribute('data-nickname') || 'Unnamed Lure',
+        preamble: lureItem.getAttribute('data-preamble') || '',
+        steps: lureItem.getAttribute('data-steps') || '',
+        epilogue: lureItem.getAttribute('data-epilogue') || '',
+        capabilities: lureItem.getAttribute('data-capabilities') || ''
+    };
+    
+    // Build the text content to copy
+    let textToCopy = `${lureData.nickname}\n\n`;
+    
+    if (lureData.preamble) {
+        textToCopy += `Preamble:\n${lureData.preamble}\n\n`;
+    }
+    
+    if (lureData.steps) {
+        textToCopy += `Steps:\n${lureData.steps}\n\n`;
+    }
+    
+    if (lureData.epilogue) {
+        textToCopy += `Epilogue:\n${lureData.epilogue}\n\n`;
+    }
+    
+    if (lureData.capabilities) {
+        textToCopy += `Capabilities: ${lureData.capabilities}\n`;
+    }
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Show copied animation
+        lureItem.classList.add('copied');
+        
+        // Show notification
+        showCopyNotification(lureItem);
+        
+        // Remove copied class after animation
+        setTimeout(() => {
+            lureItem.classList.remove('copied');
+        }, 600);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        // Fallback for older browsers
+        fallbackCopyTextToClipboard(textToCopy, lureItem);
+    });
+}
+
+// Fallback copy method for older browsers
+function fallbackCopyTextToClipboard(text, lureItem) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        lureItem.classList.add('copied');
+        showCopyNotification(lureItem);
+        setTimeout(() => {
+            lureItem.classList.remove('copied');
+        }, 600);
+    } catch (err) {
+        console.error('Fallback copy failed: ', err);
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+// Show copy notification
+function showCopyNotification(lureItem) {
+    // Remove existing notification if any
+    const existingNotification = lureItem.querySelector('.copy-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create new notification
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = 'Copied!';
+    lureItem.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Hide notification after 2 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 2000);
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Set up clear filters button
@@ -126,4 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalTools = document.querySelectorAll('.tool-item').length;
     document.getElementById('totalTools').textContent = totalTools;
     document.getElementById('visibleTools').textContent = totalTools;
+    
+    // Set up lure card click handlers
+    const lureItems = document.querySelectorAll('.lure-item');
+    lureItems.forEach(lureItem => {
+        lureItem.addEventListener('click', () => {
+            copyLureContent(lureItem);
+        });
+    });
 }); 

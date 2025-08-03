@@ -138,6 +138,7 @@ def generate_lures_html(entry: Dict[str, Any], config) -> str:
             
             # Generate capabilities HTML for top-right of lure card
             capabilities_html = ""
+            capabilities_list = []
             if lure.get('capabilities'):
                 for capability in lure['capabilities']:
                     # Add Font Awesome icons for specific capabilities
@@ -150,9 +151,29 @@ def generate_lures_html(entry: Dict[str, Any], config) -> str:
                         icon_html = '<i class="fas fa-folder" style="color: #FFA726;"></i>'
                     
                     capabilities_html += f'<span class="capability-tag">{icon_html} {capability}</span>'
+                    capabilities_list.append(capability)
+            
+            # Prepare data attributes for copy functionality
+            preamble_text = lure.get('preamble', '').replace('"', '&quot;').replace('\n', '\\n')
+            epilogue_text = lure.get('epilogue', '').replace('"', '&quot;').replace('\n', '\\n')
+            
+            # Prepare steps text for copying
+            steps_text = ""
+            if lure.get('steps'):
+                for j, step in enumerate(lure['steps'], 1):
+                    steps_text += f"{j}. {step}\\n"
+            else:
+                steps_text = "1. No steps specified\\n"
+            
+            capabilities_text = ", ".join(capabilities_list)
             
             lures_html += f'''
-            <div class="lure-item" style="border-left-color: {color};">
+            <div class="lure-item" style="border-left-color: {color};" 
+                 data-nickname="{lure.get('nickname', 'Unnamed Lure')}"
+                 data-preamble="{preamble_text}"
+                 data-steps="{steps_text}"
+                 data-epilogue="{epilogue_text}"
+                 data-capabilities="{capabilities_text}">
                 <div class="lure-header">
                     <h3 class="lure-name">{lure.get('nickname', 'Unnamed Lure')}</h3>
                     <div class="lure-capabilities">

@@ -72,6 +72,7 @@
         </div>
     </div>
 
+    <script src="../script.js"></script>
     <script>
         // Search functionality for lures
         document.getElementById('luresSearch').addEventListener('input', function() {
@@ -109,6 +110,16 @@
                     t.classList.remove('show');
                 });
             }
+        });
+        
+        // Initialize lure card click handlers for copy functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const lureItems = document.querySelectorAll('.lure-item');
+            lureItems.forEach(lureItem => {
+                lureItem.addEventListener('click', () => {
+                    copyLureContent(lureItem);
+                });
+            });
         });
     </script>
 </body>
