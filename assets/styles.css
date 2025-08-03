@@ -564,37 +564,6 @@ body {
     align-items: flex-start;
 }
 
-.entry-info {
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #667eea;
-    line-height: 1.6;
-    color: #333;
-}
-
-.entry-info p {
-    margin-bottom: 1rem;
-}
-
-.entry-info p:last-child {
-    margin-bottom: 0;
-}
-
-.entry-info strong {
-    color: #2c3e50;
-    font-weight: 600;
-}
-
-.entry-info code {
-    background: #e9ecef;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
-    color: #495057;
-}
-
 .lures-section {
     margin-top: 2rem;
 }
