@@ -12,7 +12,7 @@ from typing import Dict, List, Any
 
 # Import our modules
 from jinja2 import Environment, FileSystemLoader
-from src.generators import generate_tools_html, generate_lures_html, generate_tags_html
+from src.generators import generate_tools_html, generate_lures_html, generate_tags_html, generate_info_html
 from src.utils import format_platform, format_presentation
 from src.pages import PageProcessor
 from src.config import ConfigLoader
@@ -75,6 +75,7 @@ class ClickFixWikiBuilder:
         template = self.jinja_env.get_template('entry.html.j2')
         tags_html = generate_tags_html(entry)
         lures_html = generate_lures_html(entry, self.config)
+        info_html = generate_info_html(entry)
         
         # Generate navigation
         pages = self.page_processor.get_all_pages()
@@ -102,6 +103,7 @@ class ClickFixWikiBuilder:
             entry=entry_data,
             tags_html=tags_html,
             lures_html=lures_html,
+            info_html=info_html,
             navigation_html=navigation_html
         )
     

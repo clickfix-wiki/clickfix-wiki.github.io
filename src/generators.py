@@ -277,6 +277,19 @@ def get_contact_icon_class(platform: str) -> str:
     }
     return icon_map.get(platform.lower(), 'fas fa-link')
 
+def generate_info_html(entry: Dict[str, Any]) -> str:
+    """Generate info HTML for an entry"""
+    info = entry.get('info', '')
+    if not info:
+        return ""
+    
+    # Render markdown and handle line breaks
+    info_html = render_markdown(info)
+    # Handle multiple newlines by converting to <br> tags
+    info_html = info_html.replace('\n\n', '</p><p>').replace('\n', '<br>')
+    
+    return f'<div class="entry-info">{info_html}</div>'
+
 def generate_tags_html(entry: Dict[str, Any]) -> str:
     """Generate tags HTML for an entry"""
     all_capabilities = get_all_capabilities(entry)
