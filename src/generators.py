@@ -167,15 +167,24 @@ def generate_lures_html(entry: Dict[str, Any], config) -> str:
             
             capabilities_text = ", ".join(capabilities_list)
             
+            # Create anchor ID for the lure
+            lure_anchor = f"lure-{entry['id']}-{i}"
+             
             lures_html += f'''
             <div class="lure-item" style="border-left-color: {color};" 
                  data-nickname="{lure.get('nickname', 'Unnamed Lure')}"
                  data-preamble="{preamble_text}"
                  data-steps="{steps_text}"
                  data-epilogue="{epilogue_text}"
-                 data-capabilities="{capabilities_text}">
+                 data-capabilities="{capabilities_text}"
+                 data-anchor="{lure_anchor}">
                 <div class="lure-header">
-                    <h3 class="lure-name">{lure.get('nickname', 'Unnamed Lure')}</h3>
+                    <h3 class="lure-name">
+                        <a href="#{lure_anchor}" class="lure-link" onclick="copyLureLink(event, '{lure_anchor}')">
+                            <i class="fas fa-link"></i>
+                            {lure.get('nickname', 'Unnamed Lure')}
+                        </a>
+                    </h3>
                     <div class="lure-capabilities">
                         {capabilities_html}
                     </div>

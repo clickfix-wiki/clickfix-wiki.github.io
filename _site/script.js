@@ -106,6 +106,33 @@ function filterTools(searchTerm) {
     }
 }
 
+// Copy lure link to clipboard
+function copyLureLink(event, anchorId) {
+    event.preventDefault();
+    
+    // Get the current URL and add the anchor
+    const currentUrl = window.location.href.split('#')[0];
+    const linkUrl = `${currentUrl}#${anchorId}`;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(linkUrl).then(() => {
+        // Find the lure item
+        const lureItem = event.target.closest('.lure-item');
+        if (lureItem) {
+            // Show notification
+            showCopyNotification(lureItem, 'Copied link!');
+            
+            // Add copied animation
+            lureItem.classList.add('copied');
+            setTimeout(() => {
+                lureItem.classList.remove('copied');
+            }, 600);
+        }
+    }).catch(err => {
+        console.error('Failed to copy link: ', err);
+    });
+}
+
 // Copy lure content to clipboard
 function copyLureContent(lureItem) {
     // Extract lure data from data attributes
@@ -143,7 +170,7 @@ function copyLureContent(lureItem) {
         lureItem.classList.add('copied');
         
         // Show notification
-        showCopyNotification(lureItem);
+        showCopyNotification(lureItem, 'Copied text!');
         
         // Remove copied class after animation
         setTimeout(() => {
@@ -170,7 +197,7 @@ function fallbackCopyTextToClipboard(text, lureItem) {
     try {
         document.execCommand('copy');
         lureItem.classList.add('copied');
-        showCopyNotification(lureItem);
+        showCopyNotification(lureItem, 'Copied text!');
         setTimeout(() => {
             lureItem.classList.remove('copied');
         }, 600);
@@ -182,7 +209,7 @@ function fallbackCopyTextToClipboard(text, lureItem) {
 }
 
 // Show copy notification
-function showCopyNotification(lureItem) {
+function showCopyNotification(lureItem, message = 'Copied!') {
     // Remove existing notification if any
     const existingNotification = lureItem.querySelector('.copy-notification');
     if (existingNotification) {
@@ -192,7 +219,7 @@ function showCopyNotification(lureItem) {
     // Create new notification
     const notification = document.createElement('div');
     notification.className = 'copy-notification';
-    notification.textContent = 'Copied!';
+    notification.textContent = message;
     lureItem.appendChild(notification);
     
     // Show notification
@@ -235,7 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set up lure card click handlers
     const lureItems = document.querySelectorAll('.lure-item');
     lureItems.forEach(lureItem => {
-        lureItem.addEventListener('click', () => {
+        lureItem.addEventListener('click', (event) => {
+            // Don't trigger if clicking on the link
+            if (event.target.closest('.lure-link')) {
+                return;
+            }
             copyLureContent(lureItem);
         });
     });

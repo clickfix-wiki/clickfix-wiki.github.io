@@ -665,6 +665,30 @@ body {
     flex: 1;
 }
 
+.lure-link {
+    color: #2c3e50;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.lure-link:hover {
+    color: #667eea;
+    text-decoration: underline;
+}
+
+.lure-link i {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.lure-link:hover i {
+    opacity: 1;
+}
+
 .lure-capabilities {
     display: flex;
     gap: 0.5rem;
