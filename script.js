@@ -263,10 +263,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const lureItems = document.querySelectorAll('.lure-item');
     lureItems.forEach(lureItem => {
         lureItem.addEventListener('click', (event) => {
-            // Don't trigger if clicking on the link
+            // If clicking on the lure link/heading, copy the link
             if (event.target.closest('.lure-link')) {
+                const anchorId = lureItem.getAttribute('data-anchor');
+                if (anchorId) {
+                    copyLureLink(event, anchorId);
+                }
                 return;
             }
+            // Otherwise copy the lure content
             copyLureContent(lureItem);
         });
     });

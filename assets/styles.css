@@ -675,13 +675,12 @@ body {
 }
 
 .lure-link:hover {
-    color: #667eea;
     text-decoration: underline;
 }
 
 .lure-link i {
     font-size: 0.8rem;
-    opacity: 0.6;
+    opacity: 0;
     transition: opacity 0.2s;
 }
 
