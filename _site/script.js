@@ -113,27 +113,28 @@ function copyLureContent(lureItem) {
         nickname: lureItem.getAttribute('data-nickname') || 'Unnamed Lure',
         preamble: lureItem.getAttribute('data-preamble') || '',
         steps: lureItem.getAttribute('data-steps') || '',
-        epilogue: lureItem.getAttribute('data-epilogue') || '',
-        capabilities: lureItem.getAttribute('data-capabilities') || ''
+        epilogue: lureItem.getAttribute('data-epilogue') || ''
     };
     
     // Build the text content to copy
     let textToCopy = `${lureData.nickname}\n\n`;
     
     if (lureData.preamble) {
-        textToCopy += `Preamble:\n${lureData.preamble}\n\n`;
+        // Convert escaped newlines to real newlines
+        const preambleText = lureData.preamble.replace(/\\n/g, '\n');
+        textToCopy += `${preambleText}\n\n`;
     }
     
     if (lureData.steps) {
-        textToCopy += `Steps:\n${lureData.steps}\n\n`;
+        // Convert escaped newlines to real newlines
+        const stepsText = lureData.steps.replace(/\\n/g, '\n');
+        textToCopy += `${stepsText}\n\n`;
     }
     
     if (lureData.epilogue) {
-        textToCopy += `Epilogue:\n${lureData.epilogue}\n\n`;
-    }
-    
-    if (lureData.capabilities) {
-        textToCopy += `Capabilities: ${lureData.capabilities}\n`;
+        // Convert escaped newlines to real newlines
+        const epilogueText = lureData.epilogue.replace(/\\n/g, '\n');
+        textToCopy += `${epilogueText}\n`;
     }
     
     // Copy to clipboard

@@ -613,13 +613,11 @@ body {
 .lure-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    background-color: #f8f9fa;
 }
 
 .lure-item:active {
     transform: translateY(0px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    background-color: #e9ecef;
 }
 
 .lure-item.copied {
@@ -634,12 +632,9 @@ body {
 
 .copy-notification {
     position: absolute;
-    top: 1rem;
+    top: 4rem;
     right: 1rem;
-    background: rgba(102, 126, 234, 0.9);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    color: #667eea;
     font-size: 0.8rem;
     font-weight: 500;
     opacity: 0;
