@@ -440,6 +440,10 @@ body {
     font-family: 'Courier New', monospace;
 }
 
+code {
+    font-size: large !important;
+}
+
 .page-body pre {
     background: #f8f9fa;
     padding: 1rem;

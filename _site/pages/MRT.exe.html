@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRT.exe - ClickFix Wiki</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>ClickFix Wiki</h1>
+            <p>Code execution by social engineering instructions</p>
+            <nav class="site-navigation">
+                <a href="../index.html" class="nav-link">Home</a><a href="../pages/about.html" class="nav-link">About ClickFix Wiki</a><a href="../pages/contact.html" class="nav-link">Contact Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="entry-content">
+            <div class="entry-header">
+                <h1 class="entry-title">MRT.exe</h1>
+                <div class="entry-tags">
+                    
+                    <span class="tool-tag platform-tag" data-platform="Windows">
+                        
+                        <i class="fab fa-windows" style="color: #0078d4;"></i>
+                        
+                        Windows
+                    </span>
+                    
+                    
+                    <span class="tool-tag presentation-tag" data-presentation="GUI">
+                        
+                        <i class="fas fa-window-maximize" style="color: #0c5460;"></i>
+                        
+                        GUI
+                    </span>
+                    
+                </div>
+            </div>
+
+            
+
+            <div class="lures-section">
+                <div class="lures-search">
+                    <input type="text" id="luresSearch" placeholder="Search lures, steps, or content..." class="search-box">
+                </div>
+
+                <div class="lures-list">
+                    
+            <div class="lure-item" style="border-left-color: #667eea;">
+                <div class="lure-header">
+                    <h3 class="lure-name">Remove Computer Virus</h3>
+                    <div class="lure-capabilities">
+                        <span class="capability-tag"><i class="fas fa-shield-alt" style="color: #000080;"></i> UAC</span><span class="capability-tag"><i class="fas fa-check-circle" style="color: #28a745;"></i> MOTW</span><span class="capability-tag"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span>
+                    </div>
+                </div>
+                
+                <div class="lure-preamble"><p>Your computer is infected with a virus! Use the official Microsoft Windows Malicious Software Removal Tool:</p></div>
+                
+                <div class="lure-steps">
+                    <ol class="steps-list">
+                        <li><strong>1.</strong> Press <strong>Win-R</strong> on your keyboard.</li><li><strong>2.</strong> Type <strong><code>MRT</code></strong> and press <strong>Enter</strong> to open the Microsoft Windows Malicious Software Removal Tool.</li><li><strong>3.</strong> Click <strong>Yes</strong> when prompted.</li><li><strong>4.</strong> Click <strong>Next</strong> to continue.</li><li><strong>5.</strong> Select the third bullet, <strong>Customized Scan</strong></li><li><strong>6.</strong> Click the <strong>Choose folder</strong> button.</li><li><strong>7.</strong> Press <strong>Ctrl-L</strong> to focus the address bar.</li><li><strong>8.</strong> Press <strong>Ctrl-V</strong> to paste our configuration</li><li><strong>9.</strong> Press <strong>Enter</strong> to submit</li>
+                    </ol>
+                </div>
+                
+                <div class="lure-epilogue"><p>Once you have completed these steps your computer should be clean from viruses.</p></div>
+                
+                
+                
+                
+                
+                <hr class="lure-divider">
+                
+                
+            </div>
+            
+            <div class="lure-item" style="border-left-color: #f093fb;">
+                <div class="lure-header">
+                    <h3 class="lure-name">Clean Malicious Software</h3>
+                    <div class="lure-capabilities">
+                        <span class="capability-tag"><i class="fas fa-shield-alt" style="color: #000080;"></i> UAC</span><span class="capability-tag"><i class="fas fa-check-circle" style="color: #28a745;"></i> MOTW</span><span class="capability-tag"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span>
+                    </div>
+                </div>
+                
+                <div class="lure-preamble"><p>You have been infected with malware!</p></div>
+                
+                <div class="lure-steps">
+                    <ol class="steps-list">
+                        <li><strong>1.</strong> Press <strong>Win-R</strong> on your keyboard.</li><li><strong>2.</strong> Type <strong><code>MRT</code></strong> and press <strong>Enter</strong> to open the Microsoft Windows Malicious Software Removal Tool.</li><li><strong>3.</strong> Click <strong>Yes</strong> when prompted.</li><li><strong>4.</strong> Click <strong>Next</strong> to continue.</li><li><strong>5.</strong> Select the third bullet, <strong>Customized Scan</strong></li><li><strong>6.</strong> Click the <strong>Choose folder</strong> button.</li><li><strong>7.</strong> Press <strong>Ctrl-L</strong> to focus the address bar.</li><li><strong>8.</strong> Press <strong>Ctrl-V</strong> to paste our configuration</li><li><strong>9.</strong> Press <strong>Enter</strong> to submit</li>
+                    </ol>
+                </div>
+                
+                <div class="lure-epilogue"><p>Then you will be secure!</p></div>
+                
+                
+                
+                
+                
+                <hr class="lure-divider">
+                
+                
+            </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Documenting Windows system tools for educational and legitimate system administration purposes</p>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality for lures
+        document.getElementById('luresSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const lureItems = document.querySelectorAll('.lure-item');
+            
+            lureItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Contributor tooltip functionality
+        function toggleContributorContacts(lureIndex) {
+            const tooltip = document.getElementById(`contributor-contacts-${lureIndex}`);
+            if (tooltip) {
+                // Hide all other tooltips first
+                document.querySelectorAll('.contributor-contacts').forEach(t => {
+                    t.classList.remove('show');
+                });
+                
+                // Toggle current tooltip
+                tooltip.classList.toggle('show');
+            }
+        }
+        
+        // Close tooltips when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.contributor-name') && !event.target.closest('.contributor-contacts')) {
+                document.querySelectorAll('.contributor-contacts').forEach(t => {
+                    t.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

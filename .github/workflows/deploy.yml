@@ -44,4 +44,11 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
         # Ensure proper deployment
         enable_jekyll: false
-        cname: clickfix-wiki.github.io 
+        cname: clickfix-wiki.github.io
+        # Force deployment
+        force_orphan: true
+        # Add explicit permissions
+        permissions:
+          contents: write
+          pages: write
+          id-token: write 

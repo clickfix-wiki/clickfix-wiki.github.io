@@ -45,7 +45,7 @@ class ClickFixWikiBuilder:
             print(f"Techniques directory {self.techniques_dir} not found")
             return entries
             
-        for yaml_file in self.techniques_dir.glob("*.yaml"):
+        for yaml_file in self.techniques_dir.glob("*.yml"):
             entry = self.load_yaml_file(yaml_file)
             if entry:
                 entry['id'] = yaml_file.stem

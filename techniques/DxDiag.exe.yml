@@ -5,9 +5,6 @@ presentation: gui
 lures:
   - nickname: "Fix Your Graphics Driver"
     added_at: "2025-01-08"
-    capabilities:
-      - "UAC"
-      - "MOTW"
     contributor:
       name: "John Hammond"
       # handle: "johnhammond"
@@ -16,17 +13,20 @@ lures:
         twitter: "_johnhammond"
         youtube: "@_JohnHammond"
         github: "John Hammond"
-    preamble: >
-      Your graphics driver is out of date! 
+    # preamble: >
+    #   Your graphics driver is out of date! 
     steps:
       - "Press **Win-R** on your keyboard"
-      - "Type **dxdiag** and press **Enter**"
+      - "Type **`DxDiag`** and press **Enter**"
       - "Click **Save All Information**"
       - "Press **Ctrl-L** to focus the address bar"
       - "Press **Ctrl-V** to paste our configuration"
       - "Press **Enter** to submit"
-    epilogue: >
-      Once you have completed the steps you can continue.
+    capabilities:
+      - MOTW
+      - File Explorer
+    # epilogue: >
+    #   Once you have completed the steps you can continue.
     # references:
     #   - "https://docs.microsoft.com/en-us/windows/win32/directx/dxdiag"
     #   - "https://attack.mitre.org/techniques/T1059/"
