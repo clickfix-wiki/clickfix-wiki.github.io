@@ -668,10 +668,7 @@ body {
 .lure-link {
     color: #2c3e50;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    display: inline;
     transition: all 0.2s;
 }
 
@@ -684,7 +681,7 @@ body {
     opacity: 0;
     transition: opacity 0.2s;
     text-decoration: none;
-    margin-left: auto;
+    margin-left: 0.2rem;
 }
 
 .lure-link:hover i {

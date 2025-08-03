@@ -266,20 +266,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Check if we're clicking on the lure link/heading
             const lureLink = event.target.closest('.lure-link');
             if (lureLink) {
-                // Check if the link is hovered (icon visible and underlined)
-                const linkIcon = lureLink.querySelector('i');
-                const isHovered = linkIcon && window.getComputedStyle(linkIcon).opacity !== '0';
-                const isUnderlined = window.getComputedStyle(lureLink).textDecoration.includes('underline');
-                
-                if (isHovered && isUnderlined) {
-                    // User is hovering over the heading, copy the link
-                    event.stopPropagation();
-                    const anchorId = lureItem.getAttribute('data-anchor');
-                    if (anchorId) {
-                        copyLureLink(event, anchorId);
-                    }
-                    return;
+                // If clicking on the link, always copy the link (not the text)
+                event.stopPropagation();
+                const anchorId = lureItem.getAttribute('data-anchor');
+                if (anchorId) {
+                    copyLureLink(event, anchorId);
                 }
+                return;
             }
             
             // Otherwise copy the lure content
