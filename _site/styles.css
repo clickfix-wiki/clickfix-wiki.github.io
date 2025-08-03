@@ -682,10 +682,12 @@ body {
     font-size: 0.8rem;
     opacity: 0;
     transition: opacity 0.2s;
+    text-decoration: none;
 }
 
 .lure-link:hover i {
     opacity: 1;
+    text-decoration: none;
 }
 
 .lure-capabilities {
