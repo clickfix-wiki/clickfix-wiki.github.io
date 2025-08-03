@@ -14,7 +14,7 @@ search_prompt: "Search tools, lures, or capabilities..."
 show_count: false  # Show "X tools documented • Y currently visible"
 
 # Footer
-footer: "Documenting Windows system tools for educational and legitimate system administration purposes"
+footer: "ClickFix lures can lead to malware and computer viruses. If you see text like this online, it's likely a scam."
 
 # Navigation
 nav_home: "Home"

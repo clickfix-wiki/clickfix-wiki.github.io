@@ -1,0 +1,31 @@
+name: ftp.exe
+added_at: 2025-01-08
+platform: windows
+presentation: cli
+info: >
+  `ftp.exe` is the native Windows client for the File Transfer Protocol. Any input prefixed by a `!` exclamation point will
+  be treated as a shell command. You can copy and paste a payload that just begins with a `!` exclamation point, like:
+
+  ```
+  !calc.exe
+  ```
+
+
+lures:
+  - nickname: "Upload Your ID Verification"
+    preamble: >
+      Submit your ID verification using our secure file transfer protocol. Follow these steps:
+    steps:
+      - "Press **Win-R** on your keyboard."
+      - "Type **`ftp`** and press **Enter**."
+      - "Press **Ctrl-V** to paste the desired configuration."
+      - "Press **Enter** to submit."
+  - nickname: "Receive a file that was shared with you"
+    steps:
+      - "Press **Win** on your keyboard."
+      - "Type **`ftp`** and press **Ctrl+Shift+Enter**."
+      - "Click **Yes** when prompted"
+      - "Press **Ctrl-V** to paste the desired configuration."
+      - "Press **Enter** to submit."
+    capabilities:
+      - UAC

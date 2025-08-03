@@ -1,14 +1,18 @@
-name: certreq.exe
+name: credwiz.exe
 added_at: 2025-01-08
 platform: windows
-presentation: cli
+info: >
+  The `credwiz.exe` application is the Credential Backup and Restore Wizard.
+presentation: gui
 lures:
-  - nickname: "Repair HTTPS Security Certificate"
+  - nickname: "Your Passwords Have Been Compromised!"
     preamble: >
-      The SSL certificate for this application is invalid. Repair the certificate with these steps:
+      To lock down your device, follow these steps:
     steps:
       - "Press **Win-R** on your keyboard."
-      - "Type **`certreq`** and press **Enter**."
+      - "Type **`credwiz`** and press **Enter**."
+      - "Press **Enter** to continue."
+      - "Press **Enter** once again to confirm."
       - "Press **Ctrl-L** to focus the new window."
       - "Press **Ctrl-V** to paste the desired configuration."
       - "Press **Enter** to submit."
@@ -17,14 +21,16 @@ lures:
     capabilities:
       - MOTW
       - File Explorer
-  - nickname: "Corrupted Security Certicates"
+  - nickname: "Your device credentials are invalid."
     preamble: >
-      Your computer's digital certificates are corrupt. Request a new certificate with these steps:
+      Your device credentials are invalid. To recover valid credentials, follow these steps:
     steps:
       - "Press the **Win** key on your keyboard."
-      - "Type **`certreq`** in the search box."
+      - "Type **`credwiz`** in the search box."
       - "Press **Ctrl-Shift-Enter** on your keyboard."
       - "Click **Yes** when prompted."
+      - "Press **Enter** to continue."
+      - "Press **Enter** once again to confirm."
       - "Press **Ctrl-L** to focus the new window."
       - "Press **Ctrl-V** to paste the desired configuration."
       - "Press **Enter** to submit."
