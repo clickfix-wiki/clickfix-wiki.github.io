@@ -45,19 +45,42 @@ clickfix-wiki.github.io/
 
 Create a new `.yaml` file in the `techniques/` directory with this structure:
 
-```
-yaml name: "Your Tool Name"
+````
+## 📝 Adding New Techniques
+
+Create a new `.yaml` file in the `techniques/` directory with this structure:
+```yaml
+name: "Your Tool Name"
 added_at: "YYYY-MM-DD"
 platform: "windows|mac|linux"
 presentation: "gui|cli"
-lures: - nickname: "Lure Name"
-added_at: "YYYY-MM-DD"
-capabilities: - "UAC" - "MOTW" - "File Explorer"
-contributor: name: "Contributor Name"
-handle: "optional_handle"
-contacts: linkedin: "optional" twitter: "optional" youtube: "optional" email: "optional"
-preamble: > # Optional, Pure Markdown Syntax "Context and pretext information" steps: - "Step 1: Do this" - "Step 2: Do that" epilogue: > # Optional, also renders as Markdown references: - "https://example.com/reference" mitigations: - "Mitigation strategy A" - "Mitigation strategy B"
-```
+lures:
+  - nickname: "Lure Name"
+    added_at: "YYYY-MM-DD"
+    capabilities:
+      - "UAC"
+      - "MOTW"
+      - "File Explorer"
+    contributor:
+      name: "Contributor Name"
+      handle: "optional_handle"
+      contacts:
+        linkedin: "optional"
+        twitter: "optional"
+        youtube: "optional"
+        email: "optional"
+preamble: > # Optional, Pure Markdown Syntax
+  "Context and pretext information"
+steps:
+  - "Step 1: Do this"
+  - "Step 2: Do that"
+epilogue: > # Optional, also renders as Markdown
+references:
+  - "https://example.com/reference  "
+mitigations:
+  - "Mitigation strategy A"
+  - "Mitigation strategy B"
+````
 
 See `yaml_specification.md` for the complete specification.
 
