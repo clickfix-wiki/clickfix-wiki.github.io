@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitigations - ClickFix Wiki</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>ClickFix Wiki</h1>
+            <p>Code execution by social engineering instructions</p>
+            <nav class="site-navigation">
+                <a href="../index.html" class="nav-link">Home</a><a href="../pages/mitigations.html" class="nav-link">Mitigations</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-content">
+            <div class="page-body">
+                <h1>Mitigations</h1>
+<p>The strongest mitigation against ClickFix lures is disabling the <strong>Win+R</strong> Run dialog box and <br />
+limiting applications from being ran from the File Explorer address bar.</p>
+<p>This can be done with this registry tweak:</p>
+<pre><code>reg add &quot;HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer&quot; /v NoRun /t REG_DWORD /d 1 /f
+</code></pre>
+<p>Note that you will need to restart Explorer for this to take effect. This can be most easily done by logging<br />
+out and logging back in.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Documenting Windows system tools for educational and legitimate system administration purposes</p>
+        </div>
+    </div>
+</body>
+</html>

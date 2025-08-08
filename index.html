@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickFix Wiki - Code execution by social engineering instructions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>ClickFix Wiki</h1>
+            <p>Code execution by social engineering instructions</p>
+            <nav class="site-navigation">
+                <a href="index.html" class="nav-link">Home</a><a href="pages/mitigations.html" class="nav-link">Mitigations</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-section">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search tools, lures, or capabilities...">
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-groups">
+                <div class="filter-group">
+                    <div class="filter-group-title">Platform</div>
+                    <div class="filter-tags" id="platformTags">
+                        <div class="filter-tag" data-platform="Windows" onclick="toggleFilter('platform', 'Windows', this)"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</div>
+                        <div class="filter-tag" data-platform="Mac" onclick="toggleFilter('platform', 'Mac', this)"><i class="fab fa-apple" style="color: #000000;"></i> Mac</div>
+                        <div class="filter-tag" data-platform="Linux" onclick="toggleFilter('platform', 'Linux', this)"><i class="fab fa-linux" style="color: #f47421;"></i> Linux</div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-title">Interface</div>
+                    <div class="filter-tags" id="presentationTags">
+                        <div class="filter-tag" data-presentation="GUI" onclick="toggleFilter('presentation', 'GUI', this)"><i class="fas fa-window-maximize"></i> GUI</div>
+                        <div class="filter-tag" data-presentation="CLI" onclick="toggleFilter('presentation', 'CLI', this)"><i class="fas fa-terminal"></i> CLI</div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-title">Capabilities</div>
+                    <div class="filter-tags" id="capabilityTags">
+                        <div class="filter-tag" data-capability="UAC" onclick="toggleFilter('capability', 'UAC', this)"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</div>
+                        <div class="filter-tag" data-capability="MOTW" onclick="toggleFilter('capability', 'MOTW', this)"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</div>
+                        <div class="filter-tag" data-capability="File Explorer" onclick="toggleFilter('capability', 'File Explorer', this)"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="tools-list" id="toolsGrid">
+            
+        <a href="pages/DxDiag.exe.html" class="tool-item" data-id="DxDiag.exe">
+            <div class="tool-title">DxDiag.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span>
+                <div class="tool-lure-count">1 lure</div>
+            </div>
+        </a>
+        
+        <a href="pages/conhost.exe.html" class="tool-item" data-id="conhost.exe">
+            <div class="tool-title">conhost.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="CLI"><i class="fas fa-terminal"></i> CLI</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/FileHistory.exe.html" class="tool-item" data-id="FileHistory.exe">
+            <div class="tool-title">FileHistory.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/msra.exe.html" class="tool-item" data-id="msra.exe">
+            <div class="tool-title">msra.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span>
+                <div class="tool-lure-count">1 lure</div>
+            </div>
+        </a>
+        
+        <a href="pages/eventvwr.html" class="tool-item" data-id="eventvwr">
+            <div class="tool-title">eventvwr.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">1 lure</div>
+            </div>
+        </a>
+        
+        <a href="pages/MRT.exe.html" class="tool-item" data-id="MRT.exe">
+            <div class="tool-title">MRT.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/control.exe.html" class="tool-item" data-id="control.exe">
+            <div class="tool-title">control.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/cmd.exe.html" class="tool-item" data-id="cmd.exe">
+            <div class="tool-title">cmd.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="CLI"><i class="fas fa-terminal"></i> CLI</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/certreq.exe.html" class="tool-item" data-id="certreq.exe">
+            <div class="tool-title">certreq.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="CLI"><i class="fas fa-terminal"></i> CLI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/credwiz.exe.html" class="tool-item" data-id="credwiz.exe">
+            <div class="tool-title">credwiz.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="GUI"><i class="fas fa-window-maximize"></i> GUI</span><span class="tool-tag capability-tag" data-capability="File Explorer"><i class="fas fa-folder" style="color: #FFA726;"></i> File Explorer</span><span class="tool-tag capability-tag" data-capability="MOTW"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> MOTW</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        <a href="pages/ftp.exe.html" class="tool-item" data-id="ftp.exe">
+            <div class="tool-title">ftp.exe</div>
+            <div class="tool-tags">
+                <span class="tool-tag platform-tag" data-platform="Windows"><i class="fab fa-windows" style="color: #0078d4;"></i> Windows</span><span class="tool-tag presentation-tag" data-presentation="CLI"><i class="fas fa-terminal"></i> CLI</span><span class="tool-tag capability-tag" data-capability="UAC"><i class="fas fa-shield-alt" style="color: #194360;"></i> UAC</span>
+                <div class="tool-lure-count">2 lures</div>
+            </div>
+        </a>
+        
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>No tools found</h3>
+            <p>Try adjusting your search terms</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>ClickFix lures can lead to malware and computer viruses. If you see text like this online, it's likely a scam.</p>
+        </div>
+    </div>
+</body>
+</html> 

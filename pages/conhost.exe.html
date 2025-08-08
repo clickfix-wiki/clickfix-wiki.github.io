@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>conhost.exe - ClickFix Wiki</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>ClickFix Wiki</h1>
+            <p>Code execution by social engineering instructions</p>
+            <nav class="site-navigation">
+                <a href="../index.html" class="nav-link">Home</a><a href="../pages/mitigations.html" class="nav-link">Mitigations</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="entry-content">
+            <div class="entry-header">
+                <h1 class="entry-title">conhost.exe</h1>
+                <div class="entry-tags">
+                    
+                    <span class="tool-tag platform-tag" data-platform="Windows">
+                        
+                        <i class="fab fa-windows" style="color: #0078d4;"></i>
+                        
+                        Windows
+                    </span>
+                    
+                    
+                    <span class="tool-tag presentation-tag" data-presentation="CLI">
+                        
+                        <i class="fas fa-terminal" style="color: #0c5460;"></i>
+                        
+                        CLI
+                    </span>
+                    
+                </div>
+            </div>
+
+            
+
+            <div class="lures-section">
+                <div class="lures-search">
+                    <input type="text" id="luresSearch" placeholder="Search lures, steps, or content..." class="search-box">
+                </div>
+
+                <div class="lures-list">
+                    
+            <div class="lure-item" style="border-left-color: #667eea;" 
+                 data-nickname="Activate Windows"
+                 data-preamble="Activate Windows for free with these steps:\n"
+                 data-steps="1. Press **Win-R** on your keyboard.\n2. Type **`conhost`** and press **Enter**.\n3. Press **Ctrl-V** to paste the desired configuration.\n4. Press **Enter** to submit.\n"
+                 data-epilogue=""
+                 data-capabilities=""
+                 data-anchor="lure-conhost.exe-0">
+                <div class="lure-header">
+                    <h3 class="lure-name">
+                        <a href="#lure-conhost.exe-0" class="lure-link" onclick="copyLureLink(event, 'lure-conhost.exe-0')">
+                            Activate Windows
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </h3>
+                    <div class="lure-capabilities">
+                        
+                    </div>
+                </div>
+                
+                <div class="lure-preamble"><p>Activate Windows for free with these steps:</p></div>
+                
+                <div class="lure-steps">
+                    <ol class="steps-list">
+                        <li><strong>1.</strong> Press <strong>Win-R</strong> on your keyboard.</li><li><strong>2.</strong> Type <strong><code>conhost</code></strong> and press <strong>Enter</strong>.</li><li><strong>3.</strong> Press <strong>Ctrl-V</strong> to paste the desired configuration.</li><li><strong>4.</strong> Press <strong>Enter</strong> to submit.</li>
+                    </ol>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                <hr class="lure-divider">
+                
+                
+            </div>
+            
+            <div class="lure-item" style="border-left-color: #f093fb;" 
+                 data-nickname="Activate Windows"
+                 data-preamble="Activate Windows for free with these steps:\n"
+                 data-steps="1. Press **Win** on your keyboard.\n2. Type **`conhost`** and press **Ctrl+Shift+Enter**.\n3. Click **Yes** when prompted\n4. Press **Ctrl-V** to paste the desired configuration.\n5. Press **Enter** to submit.\n"
+                 data-epilogue=""
+                 data-capabilities="UAC"
+                 data-anchor="lure-conhost.exe-1">
+                <div class="lure-header">
+                    <h3 class="lure-name">
+                        <a href="#lure-conhost.exe-1" class="lure-link" onclick="copyLureLink(event, 'lure-conhost.exe-1')">
+                            Activate Windows
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </h3>
+                    <div class="lure-capabilities">
+                        <span class="capability-tag"><i class="fas fa-shield-alt" style="color: #000080;"></i> UAC</span>
+                    </div>
+                </div>
+                
+                <div class="lure-preamble"><p>Activate Windows for free with these steps:</p></div>
+                
+                <div class="lure-steps">
+                    <ol class="steps-list">
+                        <li><strong>1.</strong> Press <strong>Win</strong> on your keyboard.</li><li><strong>2.</strong> Type <strong><code>conhost</code></strong> and press <strong>Ctrl+Shift+Enter</strong>.</li><li><strong>3.</strong> Click <strong>Yes</strong> when prompted</li><li><strong>4.</strong> Press <strong>Ctrl-V</strong> to paste the desired configuration.</li><li><strong>5.</strong> Press <strong>Enter</strong> to submit.</li>
+                    </ol>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                <hr class="lure-divider">
+                
+                
+            </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>ClickFix lures can lead to malware and computer viruses. If you see text like this online, it's likely a scam.</p>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Search functionality for lures
+        document.getElementById('luresSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const lureItems = document.querySelectorAll('.lure-item');
+            
+            lureItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Contributor tooltip functionality
+        function toggleContributorContacts(lureIndex) {
+            const tooltip = document.getElementById(`contributor-contacts-${lureIndex}`);
+            if (tooltip) {
+                // Hide all other tooltips first
+                document.querySelectorAll('.contributor-contacts').forEach(t => {
+                    t.classList.remove('show');
+                });
+                
+                // Toggle current tooltip
+                tooltip.classList.toggle('show');
+            }
+        }
+        
+        // Close tooltips when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.contributor-name') && !event.target.closest('.contributor-contacts')) {
+                document.querySelectorAll('.contributor-contacts').forEach(t => {
+                    t.classList.remove('show');
+                });
+            }
+        });
+        
+        // Initialize lure card click handlers for copy functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const lureItems = document.querySelectorAll('.lure-item');
+            lureItems.forEach(lureItem => {
+                lureItem.addEventListener('click', () => {
+                    copyLureContent(lureItem);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
